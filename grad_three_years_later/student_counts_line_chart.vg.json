@@ -1,0 +1,27 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Proportion of Graduates in Professional Full-Time Positions by Field",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/chart-3/grad_three_years_later/professional_fulltime_2022vs2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(replace(datum.Value, '%', ''))",
+      "as": "Percentage"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": { "field": "Field" },
+    "y": {
+      "field": "Percentage",
+      "type": "quantitative",
+      "title": "Professional Full-Time Proportion (%)"
+    },
+    "xOffset": { "field": "Year" },
+    "color": { "field": "Year" }
+  }
+}
