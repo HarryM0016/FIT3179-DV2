@@ -1,9 +1,9 @@
-﻿Field,Value,Salary
-Business and management,52.19%,74000
-Engineering and Related Technologies,70.56%,82500
-Health,56.26%,85375
-Society and Culture,36.58%,75100
-Information Technology,49.50%,80000
-Education,72.41%,82100
-Creative Arts,27.03%,63200
-Natural and Physical Sciences,37.07%,73100
+﻿Field,Value,Salary,Enrolment
+Business and management,52.19%,74000,152343
+Engineering and Related Technologies,70.56%,82500,42794
+Health,56.26%,85375,116711
+Society and Culture,36.58%,75100,122061
+Information Technology,49.50%,80000,74506
+Education,72.41%,82100,63491
+Creative Arts,27.03%,63200,35893
+Natural and Physical Sciences,37.07%,73100,47892
