@@ -1,17 +1,9 @@
-﻿Field,Gender,Salary
-Business and management,Female,72500
-Engineering and Related Technologies,Female,80400
-Health,Female,84375
-Society and Culture,Female,75000
-Information Technology,Female,79200
-Education,Female,81000
-Creative Arts,Female,64200
-Natural and Physical Sciences,Female,71800
-Business and management,Male,75000
-Engineering and Related Technologies,Male,83000
-Health,Male,86725
-Society and Culture,Male,78300
-Information Technology,Male,80000
-Education,Male,84100
-Creative Arts,Male,62500
-Natural and Physical Sciences,Male,77000
+﻿Field,Female,Male,Gap
+Business and management,72500,75000,2500
+Engineering and Related Technologies,80400,83000,2600
+Health,84375,86725,2350
+Society and Culture,75000,78300,3300
+Information Technology,79200,80000,800
+Education,81000,84100,3100
+Creative Arts,64200,62500,-1700
+Natural and Physical Sciences,71800,77000,5200
