@@ -19,7 +19,7 @@
     "y": {
       "field": "Percentage",
       "type": "quantitative",
-      "title": "Professional Full-Time Proportion (%)"
+      "title": "Professional Full-Time Employment (%)"
     },
     "xOffset": { "field": "Year" },
     "color": { "field": "Year" }
