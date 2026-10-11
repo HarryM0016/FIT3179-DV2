@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Graduate Median Salary and Professional Full-Time Employment Percent by Field",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/median_salary_vs_employability/Field_median_salary_2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(replace(datum.Value, '%', ''))",
+      "as": "Percentage"
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.75,
+    "stroke": "#ffffff",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "x": {
+      "field": "Salary",
+      "type": "quantitative",
+      "title": "Median Salary ($)",
+      "axis": { "tickCount": 4 },
+      "scale": { "domain": [50000, 100000] }
+    },
+    "y": {
+      "field": "Percentage",
+      "type": "quantitative",
+      "title": "Professional Full-Time Employment (%)",
+      "axis": { "tickCount": 5 },
+      "scale": { "domain": [0, 100] }
+    },
+    "color": { "field": "Field" },
+    "size": {
+      "field": "Enrolment",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [50000, 75000, 125000],
+        "range": [50, 120, 240, 400]
+      },
+      "legend": { "format": ".1s" }
+    },
+    "tooltip": [
+      { "field": "Field", "type": "nominal" },
+      {
+        "field": "Salary",
+        "type": "quantitative",
+        "format": "$,",
+        "title": "Median Salary"
+      },
+      {
+        "field": "Value",
+        "title": "Professional Full-Time Employment"
+      },
+      { "field": "Enrolment", "type": "quantitative", "format": "," }
+    ]
+  }
+}
