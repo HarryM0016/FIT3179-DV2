@@ -1,0 +1,436 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "One-level Sankey: field of study -> graduate outcome",
+  "width": 700,
+  "height": 600,
+  "padding": { "left": 240, "right": 210, "top": 70, "bottom": 20 },
+  "background": "#fafafa",
+  "title": {
+    "text": "Where do graduates end up?",
+    "subtitle": "Share of each field's graduates by outcome",
+    "fontSize": 26,
+    "subtitleFontSize": 14,
+    "anchor": "start",
+    "frame": "group",
+    "offset": 24
+  },
+  "signals": [
+    {
+      "name": "standardGap",
+      "value": 3,
+      "description": "Gap between boxes, as % of the tallest stack"
+    },
+    {
+      "name": "base",
+      "value": "center",
+      "description": "Stack offset: center or zero"
+    }
+  ],
+  "data": [
+    {
+      "name": "nodes",
+      "values": [
+        {
+          "category": "Business and management",
+          "stack": 1,
+          "sort": 1,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Engineering and Related Technologies",
+          "stack": 1,
+          "sort": 2,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Health",
+          "stack": 1,
+          "sort": 3,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Society and Culture",
+          "stack": 1,
+          "sort": 4,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Information Technology",
+          "stack": 1,
+          "sort": 5,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Education",
+          "stack": 1,
+          "sort": 6,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Creative Arts",
+          "stack": 1,
+          "sort": 7,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Natural and Physical Sciences",
+          "stack": 1,
+          "sort": 8,
+          "labels": "left",
+          "gap": 0
+        },
+        {
+          "category": "Professional full-time",
+          "stack": 2,
+          "sort": 1,
+          "labels": "right",
+          "gap": 0
+        },
+        {
+          "category": "Non-professional full-time",
+          "stack": 2,
+          "sort": 2,
+          "labels": "right",
+          "gap": 0
+        },
+        {
+          "category": "Further study",
+          "stack": 2,
+          "sort": 3,
+          "labels": "right",
+          "gap": 0
+        },
+        {
+          "category": "Other",
+          "stack": 2,
+          "sort": 4,
+          "labels": "right",
+          "gap": 0
+        }
+      ]
+    },
+    {
+      "name": "wide",
+      "values": [
+        {
+          "source": "Business and management",
+          "Professional full-time": 52.19,
+          "Non-professional full-time": 27.01,
+          "Further study": 11.6,
+          "Other": 9.2
+        },
+        {
+          "source": "Engineering and Related Technologies",
+          "Professional full-time": 70.56,
+          "Non-professional full-time": 12.84,
+          "Further study": 12.7,
+          "Other": 3.9
+        },
+        {
+          "source": "Health",
+          "Professional full-time": 56.26,
+          "Non-professional full-time": 27.96,
+          "Further study": 14.63,
+          "Other": 1.15
+        },
+        {
+          "source": "Society and Culture",
+          "Professional full-time": 36.58,
+          "Non-professional full-time": 31.42,
+          "Further study": 23.9,
+          "Other": 8.1
+        },
+        {
+          "source": "Information Technology",
+          "Professional full-time": 49.5,
+          "Non-professional full-time": 15.8,
+          "Further study": 12.0,
+          "Other": 22.7
+        },
+        {
+          "source": "Education",
+          "Professional full-time": 72.41,
+          "Non-professional full-time": 13.79,
+          "Further study": 13.2,
+          "Other": 0.6
+        },
+        {
+          "source": "Creative Arts",
+          "Professional full-time": 27.03,
+          "Non-professional full-time": 25.97,
+          "Further study": 17.6,
+          "Other": 29.4
+        },
+        {
+          "source": "Natural and Physical Sciences",
+          "Professional full-time": 37.07,
+          "Non-professional full-time": 25.33,
+          "Further study": 35.9,
+          "Other": 1.7
+        }
+      ]
+    },
+    {
+      "name": "links",
+      "source": "wide",
+      "transform": [
+        {
+          "type": "fold",
+          "fields": [
+            "Professional full-time",
+            "Non-professional full-time",
+            "Further study",
+            "Other"
+          ],
+          "as": ["destination", "value"]
+        }
+      ]
+    },
+    {
+      "name": "stacks",
+      "source": "links",
+      "transform": [
+        { "type": "formula", "as": "end", "expr": "['source','destination']" },
+        {
+          "type": "formula",
+          "as": "name",
+          "expr": "[datum.source, datum.destination]"
+        },
+        { "type": "project", "fields": ["end", "name", "value"] },
+        { "type": "flatten", "fields": ["end", "name"] },
+        {
+          "type": "lookup",
+          "from": "nodes",
+          "key": "category",
+          "values": ["stack", "sort", "gap", "labels"],
+          "fields": ["name"],
+          "as": ["stack", "sort", "gap", "labels"]
+        },
+        {
+          "type": "aggregate",
+          "fields": ["value", "stack", "sort", "gap", "labels"],
+          "groupby": ["end", "name"],
+          "ops": ["sum", "max", "max", "max", "max"],
+          "as": ["value", "stack", "sort", "gap", "labels"]
+        },
+        {
+          "type": "aggregate",
+          "fields": ["value", "stack", "sort", "gap", "labels"],
+          "groupby": ["name"],
+          "ops": ["max", "max", "max", "max", "max"],
+          "as": ["value", "stack", "sort", "gap", "labels"]
+        }
+      ]
+    },
+    {
+      "name": "maxValue",
+      "source": "stacks",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": ["value"],
+          "groupby": ["stack"],
+          "ops": ["sum"],
+          "as": ["value"]
+        },
+        {
+          "type": "aggregate",
+          "fields": ["value"],
+          "ops": ["max"],
+          "as": ["value"]
+        }
+      ]
+    },
+    {
+      "name": "plottedStacks",
+      "source": "stacks",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "spacer",
+          "expr": "(data('maxValue')[0].value/100)*(standardGap+datum.gap)"
+        },
+        { "type": "formula", "as": "type", "expr": "['data','spacer']" },
+        {
+          "type": "formula",
+          "as": "spacedValue",
+          "expr": "[datum.value, datum.spacer]"
+        },
+        { "type": "flatten", "fields": ["type", "spacedValue"] },
+        {
+          "type": "stack",
+          "groupby": ["stack"],
+          "sort": { "field": "sort", "order": "descending" },
+          "field": "spacedValue",
+          "offset": { "signal": "base" }
+        },
+        { "type": "formula", "expr": "(datum.value/2)+datum.y0", "as": "yc" }
+      ]
+    },
+    {
+      "name": "finalTable",
+      "source": "plottedStacks",
+      "transform": [{ "type": "filter", "expr": "datum.type == 'data'" }]
+    },
+    {
+      "name": "linkTable",
+      "source": "links",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "finalTable",
+          "key": "name",
+          "values": ["y0", "y1", "stack", "sort"],
+          "fields": ["source"],
+          "as": ["sourceStacky0", "sourceStacky1", "sourceStack", "sourceSort"]
+        },
+        {
+          "type": "lookup",
+          "from": "finalTable",
+          "key": "name",
+          "values": ["y0", "y1", "stack", "sort"],
+          "fields": ["destination"],
+          "as": [
+            "destinationStacky0",
+            "destinationStacky1",
+            "destinationStack",
+            "destinationSort"
+          ]
+        },
+        {
+          "type": "stack",
+          "groupby": ["source"],
+          "sort": { "field": "destinationSort", "order": "descending" },
+          "field": "value",
+          "offset": "zero",
+          "as": ["syi0", "syi1"]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.syi0+datum.sourceStacky0",
+          "as": "sy0"
+        },
+        {
+          "type": "stack",
+          "groupby": ["destination"],
+          "sort": { "field": "sourceSort", "order": "descending" },
+          "field": "value",
+          "offset": "zero",
+          "as": ["dyi0", "dyi1"]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.dyi0+datum.destinationStacky0",
+          "as": "dy0"
+        },
+        { "type": "formula", "expr": "(datum.value/2)+datum.sy0", "as": "syc" },
+        { "type": "formula", "expr": "(datum.value/2)+datum.dy0", "as": "dyc" },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "diagonal",
+          "sourceY": { "expr": "scale('y', datum.syc)" },
+          "sourceX": {
+            "expr": "scale('x', toNumber(datum.sourceStack)) + bandwidth('x')"
+          },
+          "targetY": { "expr": "scale('y', datum.dyc)" },
+          "targetX": { "expr": "scale('x', datum.destinationStack)" }
+        },
+        {
+          "type": "formula",
+          "expr": "range('y')[0]-scale('y', datum.value)",
+          "as": "strokeWidth"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": { "data": "finalTable", "field": "stack" },
+      "paddingInner": 0.97
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": { "data": "plottedStacks", "field": "y1" },
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Professional full-time",
+        "Non-professional full-time",
+        "Further study",
+        "Other"
+      ],
+      "range": ["#1f77b4", "#9ecae1", "#ff7f0e", "#bdbdbd"]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": { "data": "finalTable" },
+      "encode": {
+        "update": {
+          "x": { "scale": "x", "field": "stack" },
+          "width": { "scale": "x", "band": 1 },
+          "y": { "scale": "y", "field": "y0" },
+          "y2": { "scale": "y", "field": "y1" },
+          "fill": {
+            "signal": "datum.stack == 1 ? '#6b7280' : scale('color', datum.name)"
+          },
+          "fillOpacity": { "value": 0.9 },
+          "tooltip": { "signal": "{'Name': datum.name}" }
+        },
+        "hover": { "fillOpacity": { "value": 1 } }
+      }
+    },
+    {
+      "type": "path",
+      "name": "linkPaths",
+      "from": { "data": "linkTable" },
+      "clip": true,
+      "encode": {
+        "update": {
+          "path": { "field": "path" },
+          "strokeWidth": { "field": "strokeWidth" },
+          "stroke": { "field": "destination", "scale": "color" },
+          "strokeOpacity": { "value": 0.45 },
+          "tooltip": {
+            "signal": "{'Field': datum.source, 'Outcome': datum.destination, 'Share of graduates': format(datum.value, '.1f') + '%'}"
+          }
+        },
+        "hover": { "strokeOpacity": { "value": 0.85 } }
+      }
+    },
+    {
+      "type": "text",
+      "from": { "data": "finalTable" },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.labels == 'left' ? scale('x', datum.stack) - 8 : scale('x', datum.stack) + bandwidth('x') + 8"
+          },
+          "y": { "signal": "scale('y', datum.yc)" },
+          "text": { "field": "name" },
+          "align": { "signal": "datum.labels == 'left' ? 'right' : 'left'" },
+          "baseline": { "value": "middle" },
+          "fontSize": { "value": 13 },
+          "fill": { "value": "#333333" }
+        }
+      }
+    }
+  ]
+}
