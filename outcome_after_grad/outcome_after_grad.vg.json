@@ -38,7 +38,7 @@
           "gap": 0
         },
         {
-          "category": "Engineering and Related Technologies",
+          "category": "Engineering",
           "stack": 1,
           "sort": 2,
           "labels": "left",
@@ -127,7 +127,7 @@
           "Other": 9.2
         },
         {
-          "source": "Engineering and Related Technologies",
+          "source": "Engineering",
           "Professional full-time": 70.56,
           "Non-professional full-time": 12.84,
           "Further study": 12.7,
