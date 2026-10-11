@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Median Salary Gap by Field",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/median_salary_vs_gender/Gender_median_salary_2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.Gap > 0 ? 'Male higher' : 'Female higher'",
+      "as": "Gap direction"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rule", "strokeWidth": 3 },
+      "encoding": {
+        "x": { "field": "Gap", "type": "quantitative" },
+        "x2": { "datum": 0 },
+        "y": {
+          "field": "Field",
+          "type": "nominal",
+          "title": null
+        },
+        "color": {
+          "field": "Gap direction",
+          "type": "nominal",
+          "title": "Higher median salary",
+          "scale": {
+            "domain": ["Male higher", "Female higher"],
+            "range": ["#4C78A8", "#E45756"]
+          }
+        }
+      }
+    },
+    {
+      "mark": { "type": "point", "filled": true, "size": 110 },
+      "encoding": {
+        "x": {
+          "field": "Gap",
+          "type": "quantitative",
+          "title": "Salary gap",
+          "scale": { "domain": [-6000, 6000] },
+          "axis": {
+            "values": [-6000, -4000, -2000, 0, 2000, 4000, 6000],
+            "format": "$,.0f"
+          }
+        },
+        "y": {
+          "field": "Field",
+          "type": "nominal",
+          "title": null,
+          "sort": "ascending"
+        },
+        "color": {
+          "field": "Gap direction",
+          "type": "nominal",
+          "title": "Higher median salary",
+          "scale": {
+            "domain": ["Male higher", "Female higher"],
+            "range": ["#4C78A8", "#E45756"]
+          }
+        },
+        "tooltip": [
+          { "field": "Field", "type": "nominal", "title": "Field" },
+          {
+            "field": "Female",
+            "type": "quantitative",
+            "title": "Female median salary",
+            "format": "$,.0f"
+          },
+          {
+            "field": "Male",
+            "type": "quantitative",
+            "title": "Male median salary",
+            "format": "$,.0f"
+          },
+          {
+            "field": "Gap",
+            "type": "quantitative",
+            "title": "Gap (male - female)",
+            "format": "$,.0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "rule", "color": "#555555", "strokeDash": [4, 4] },
+      "encoding": { "x": { "datum": 0 } }
+    }
+  ]
+}
