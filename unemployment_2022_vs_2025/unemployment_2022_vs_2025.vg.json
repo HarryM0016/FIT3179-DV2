@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/unemployment_2022_vs_2025/Unemployment_2022vs2025.csv"
+  },
+  "mark": { "type": "line", "point": true },
+  "width": { "step": 50 },
+  "transform": [
+    {
+      "calculate": "toNumber(replace(datum.Unemployment, '%', ''))",
+      "as": "Percentage"
+    }
+  ],
+  "title": {
+    "text": "Graduate Unemployment in 2022 and 2025"
+  },
+  "encoding": {
+    "x": { "field": "Year", "type": "ordinal", "axis": { "labelAngle": 0 } },
+    "y": {
+      "field": "Percentage",
+      "type": "quantitative"
+    },
+    "color": { "field": "Field" }
+  }
+}
