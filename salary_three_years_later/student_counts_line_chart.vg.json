@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Median Salary Change for 2022 Graduates by Field",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/salary_three_years_later/Field_median_salary_2022vs2025.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "Salary",
+      "type": "quantitative",
+      "title": "Median salary ($)",
+      "axis": { "format": "$,.0f" }
+    },
+    "y": {
+      "field": "Field",
+      "type": "nominal",
+      "title": null,
+      "sort": "ascending"
+    },
+    "tooltip": [
+      { "field": "Field", "type": "nominal", "title": "Field" },
+      { "field": "Year", "type": "nominal", "title": "Year" },
+      {
+        "field": "Salary",
+        "type": "quantitative",
+        "title": "Median salary",
+        "format": "$,.0f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": { "type": "line", "color": "#777777", "strokeWidth": 2 },
+      "encoding": {
+        "detail": { "field": "Field", "type": "nominal" },
+        "order": {
+          "field": "Year",
+          "type": "ordinal"
+        }
+      }
+    },
+    {
+      "mark": { "type": "point", "filled": true, "size": 90 },
+      "encoding": {
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Salary year",
+          "scale": {
+            "domain": ["2022", "2025"],
+            "range": ["#4C78A8", "#E45756"]
+          }
+        }
+      }
+    }
+  ]
+}
