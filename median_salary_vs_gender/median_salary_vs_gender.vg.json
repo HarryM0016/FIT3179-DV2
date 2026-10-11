@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Graduate Median Salary by Field and Gender",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/task-5/median_salary_vs_gender/Gender_median_salary_2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.Gender === 'Male' ? -datum.Salary : datum.Salary",
+      "as": "Signed salary"
+    }
+  ],
+  "mark": { "type": "bar", "tooltip": true },
+  "encoding": {
+    "x": {
+      "aggregate": "sum",
+      "field": "Signed salary",
+      "type": "quantitative",
+      "title": "Median salary ($)",
+      "scale": { "domain": [-90000, 90000] },
+      "axis": {
+        "labelExpr": "format(abs(datum.value), '$,.0f')",
+        "grid": true,
+        "domain": false,
+        "tickSize": 0
+      }
+    },
+    "y": {
+      "field": "Field",
+      "type": "nominal",
+      "title": null,
+      "sort": "ascending"
+    },
+    "color": {
+      "field": "Gender",
+      "type": "nominal",
+      "title": "Gender",
+      "scale": {
+        "domain": ["Male", "Female"],
+        "range": ["#4C78A8", "#E45756"]
+      }
+    },
+    "tooltip": [
+      { "field": "Field", "type": "nominal", "title": "Field" },
+      { "field": "Gender", "type": "nominal", "title": "Gender" },
+      {
+        "field": "Salary",
+        "type": "quantitative",
+        "title": "Median salary",
+        "format": "$,.0f"
+      }
+    ]
+  }
+}
