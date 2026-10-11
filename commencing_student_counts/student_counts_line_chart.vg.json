@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Commencing Undergraduate Student Counts by Field, 2015-2024",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/Data/Commencing_Student_Counts_2015-2024.csv"
+  },
+  "mark": { "type": "line", "point": true },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "scale": { "domain": [2015, 2024] },
+      "axis": {
+        "title": "Year",
+        "format": "d",
+        "values": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+      }
+    },
+    "y": {
+      "field": "Count",
+      "type": "quantitative",
+      "axis": { "title": "Commencing undergraduate students" }
+    },
+    "color": {
+      "field": "Field",
+      "type": "nominal",
+      "title": "Field"
+    },
+    "detail": { "field": "Field", "type": "nominal" },
+    "tooltip": [
+      { "field": "Field", "type": "nominal", "title": "Field" },
+      { "field": "Year", "type": "quantitative", "format": "d", "title": "Year" },
+      { "field": "Count", "type": "quantitative", "format": ",", "title": "Students" }
+    ]
+  }
+}
