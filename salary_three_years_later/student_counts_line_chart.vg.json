@@ -7,6 +7,12 @@
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/salary_three_years_later/Field_median_salary_2022vs2025.csv"
   },
+  "params": [{ "name": "fieldFilter", "value": "All" }],
+  "transform": [
+    {
+      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
+    }
+  ],
   "encoding": {
     "x": {
       "field": "Salary",

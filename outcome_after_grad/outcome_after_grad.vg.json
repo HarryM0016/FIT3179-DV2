@@ -14,6 +14,12 @@
     "frame": "group",
     "offset": 24
   },
+  "params": [{ "name": "fieldFilter", "value": "All" }],
+  "transform": [
+    {
+      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
+    }
+  ],
   "signals": [
     {
       "name": "standardGap",

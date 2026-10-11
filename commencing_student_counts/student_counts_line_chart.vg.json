@@ -8,6 +8,12 @@
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/commencing_student_counts/Commencing_Student_Counts_2015-2024.csv"
   },
   "mark": { "type": "line", "point": true },
+  "params": [{ "name": "fieldFilter", "value": "All" }],
+  "transform": [
+    {
+      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
+    }
+  ],
   "encoding": {
     "x": {
       "field": "Year",
