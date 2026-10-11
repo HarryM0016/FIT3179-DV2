@@ -5,7 +5,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/Data/Commencing_Student_Counts_2015-2024.csv"
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/commencing_student_counts/Commencing_Student_Counts_2015-2024.csv"
   },
   "mark": { "type": "line", "point": true },
   "encoding": {
@@ -32,8 +32,18 @@
     "detail": { "field": "Field", "type": "nominal" },
     "tooltip": [
       { "field": "Field", "type": "nominal", "title": "Field" },
-      { "field": "Year", "type": "quantitative", "format": "d", "title": "Year" },
-      { "field": "Count", "type": "quantitative", "format": ",", "title": "Students" }
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "format": "d",
+        "title": "Year"
+      },
+      {
+        "field": "Count",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Students"
+      }
     ]
   }
 }
