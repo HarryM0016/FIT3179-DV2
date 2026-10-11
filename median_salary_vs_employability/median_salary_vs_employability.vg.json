@@ -5,7 +5,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/chart-4/median_salary_vs_employability/Field_median_salary_2025.csv"
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/median_salary_vs_employability/Field_median_salary_2025.csv"
   },
   "transform": [
     {
