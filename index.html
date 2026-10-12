@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
 
@@ -31,21 +31,139 @@
   <body>
     <div class="page">
       <div class="pure-g">
-        <div class="pure-u-1-2">
+        <div class="pure-u-1-1 intro">
           <h1>Does Your Degree Decide Your Destiny?</h1>
           <p>
             Every year, tens of thousands of Australians graduate with a degree
             and the same question: what happens next?
           </p>
           <p>
-            This visualisation follows graduates from enrolment into the
-            workforce, comparing eight broad fields of study on employment,
-            further study, pay and unemployment. It then asks how much of the
-            story is about the degree itself, looking at how outcomes change
-            three years after graduation, how salaries have shifted over the
-            past decade, whether men and women are paid equally within the same
-            field, and how pay and mobility differ by state and university.
+            This visualisation follows Australian graduates from enrolment into
+            the workforce, comparing eight broad fields of study on employment,
+            further study, pay and unemployment.
           </p>
+        </div>
+      </div>
+
+      <section class="field-filter" aria-labelledby="field-filter-title">
+        <h6>Click on a field to filter</h6>
+        <div
+          class="field-filter-buttons"
+          role="group"
+          aria-label="Filter visualisations by field"
+        >
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Business and management"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/work_24dp_0072B2_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Business and management</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Engineering and Related Technologies"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/engineering_24dp_E69F00_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Engineering and Related Technologies</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Health"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/health_metrics_24dp_C23B22_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Health</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Society and Culture"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/diversity_3_24dp_CC79A7_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Society and Culture</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Information Technology"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/computer_24dp_56B4E9_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Information Technology</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Education"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/school_24dp_009E73_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Education</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Creative Arts"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/palette_24dp_7E57C2_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Creative Arts</span>
+          </button>
+          <button
+            class="field-filter-button"
+            type="button"
+            data-field="Natural and Physical Sciences"
+            aria-pressed="false"
+          >
+            <img
+              src="assets/science_24dp_8D6E4B_FILL0_wght400_GRAD0_opsz24.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Natural and Physical Sciences</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <h2>What Do People Study?</h2>
+          </div>
         </div>
       </div>
 
@@ -53,20 +171,38 @@
       <div class="pure-g">
         <div class="pure-u-1-2">
           <div class="description description-left">
-            <h2>What Do People Study?</h2>
             <p>
-              The first column contains text and the second column contains a
-              visualisation. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Massa sapien faucibus et molestie ac feugiat sed. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Massa sapien
-              faucibus et molestie ac feugiat sed.
+              <business>Business and management</business>,
+              <society-and-culture>society and culture</society-and-culture> and
+              <health>health</health> have drawn the most students since 2015.
+              Their appeal is breadth: each leads to a wide range of careers, so
+              enrolments alone don't show where graduates end up.
+              <br />
+              <br />
+              The growth is elsewhere.
+              <information-technology
+                >Information technology</information-technology
+              >
+              went from the smallest field in 2015 to the fourth largest in
+              2024, including a
+              <information-technology>+37.7%</information-technology> jump in
+              2023.
+              <br />
+              <br />
+              Outside events matter too. Between 2019 and 2021,
+              <business>business and management</business> commencements fell
+              23% while <health>health</health> grew 9%. Do these shifts lead to
+              better outcomes? Follow the graduates to find out.
             </p>
           </div>
         </div>
+
         <div class="pure-u-1-2">
-          <div id="vis1" class="vis-container"></div>
+          <div
+            id="vis1"
+            class="vis-container"
+            data-vega-spec="./charts/commencing_student_counts/student_counts_line_chart.vg.json"
+          ></div>
         </div>
       </div>
       <!-- end pure grid group -->
@@ -86,29 +222,67 @@
     <!-- end page -->
 
     <script type="text/javascript">
-      var specVis1 =
-        "./commencing_student_counts/student_counts_line_chart.vg.json";
-      var specVis2 = "./line-chart-responsive.json";
+      const chartViews = [];
+      let selectedField = "All";
 
-      vegaEmbed("#vis1", specVis1, { "actions": false });
+      const chartConfig = {
+        font: "Source Sans 3",
+        axis: {
+          labelFont: "Source Sans 3",
+          titleFont: "Source Sans 3",
+          labelFontSize: 12,
+          titleFontSize: 12
+        },
+        legend: {
+          labelFont: "Source Sans 3",
+          titleFont: "Source Sans 3"
+        },
+        title: {
+          font: "Source Sans 3",
+          fontSize: 12,
+          fontStyle: "italic"
+        }
+      };
 
-      vegaEmbed("#vis2", specVis2, { "actions": false })
-        .then(function (result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      document.querySelectorAll("[data-vega-spec]").forEach((container) => {
+        vegaEmbed(container, container.dataset.vegaSpec, {
+          actions: false,
+          config: chartConfig
         })
-        .catch(console.error);
+          .then(({ view }) => {
+            chartViews.push(view);
+            view.signal("fieldFilter", selectedField);
+            return view.runAsync();
+          })
+          .catch(console.error);
+      });
 
-      vegaEmbed("#vis3", specVis1, { "actions": false })
-        .then(function (result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        })
-        .catch(console.error);
+      const filterButtons = document.querySelectorAll(".field-filter-button");
 
-      vegaEmbed("#vis4", specVis2, { "actions": false })
-        .then(function (result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        })
-        .catch(console.error);
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Clicking the active button clears the filter
+          selectedField =
+            selectedField === button.dataset.field
+              ? "All"
+              : button.dataset.field;
+
+          filterButtons.forEach((filterButton) => {
+            const isActive = filterButton.dataset.field === selectedField;
+            filterButton.classList.toggle("is-active", isActive);
+            filterButton.setAttribute("aria-pressed", isActive);
+          });
+          document
+            .querySelector(".field-filter-buttons")
+            .classList.toggle("has-selection", selectedField !== "All");
+
+          Promise.all(
+            chartViews.map((view) =>
+              view.signal("fieldFilter", selectedField).runAsync()
+            )
+          ).catch(console.error);
+        });
+      });
     </script>
   </body>
 </html>

@@ -7,18 +7,23 @@
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/commencing_student_counts/Commencing_Student_Counts_2015-2024.csv"
   },
-  "mark": { "type": "line", "point": true },
-  "params": [{ "name": "fieldFilter", "value": "All" }],
-  "transform": [
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "params": [
     {
-      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
+      "name": "fieldFilter",
+      "value": "All"
     }
   ],
   "encoding": {
     "x": {
       "field": "Year",
       "type": "quantitative",
-      "scale": { "domain": [2015, 2024] },
+      "scale": {
+        "domain": [2015, 2024]
+      },
       "axis": {
         "title": "Year",
         "format": "d",
@@ -28,16 +33,47 @@
     "y": {
       "field": "Count",
       "type": "quantitative",
-      "axis": { "title": "Student Count" }
+      "axis": {
+        "title": "Student Count"
+      }
     },
     "color": {
       "field": "Field",
       "type": "nominal",
-      "title": "Field"
+      "title": "Field",
+      "scale": {
+        "domain": [
+          "Business and management",
+          "Engineering and Related Technologies",
+          "Health",
+          "Society and Culture",
+          "Information Technology",
+          "Education",
+          "Creative Arts",
+          "Natural and Physical Sciences"
+        ],
+        "range": [
+          "#0072B2",
+          "#E69F00",
+          "#C23B22",
+          "#CC79A7",
+          "#56B4E9",
+          "#009E73",
+          "#7E57C2",
+          "#8D6E4B"
+        ]
+      }
     },
-    "detail": { "field": "Field", "type": "nominal" },
+    "detail": {
+      "field": "Field",
+      "type": "nominal"
+    },
     "tooltip": [
-      { "field": "Field", "type": "nominal", "title": "Field" },
+      {
+        "field": "Field",
+        "type": "nominal",
+        "title": "Field"
+      },
       {
         "field": "Year",
         "type": "quantitative",
@@ -50,6 +86,29 @@
         "format": ",",
         "title": "Students"
       }
-    ]
+    ],
+    "opacity": {
+      "condition": {
+        "test": "fieldFilter === 'All' || datum.Field === fieldFilter",
+        "value": 1
+      },
+      "value": 0.15
+    }
+  },
+  "config": {
+    "axis": {
+      "gridColor": "#D9D9D9",
+      "domainColor": "#6B7280",
+      "tickColor": "#6B7280",
+      "labelColor": "#444444",
+      "titleColor": "#222222"
+    },
+    "legend": {
+      "labelColor": "#444444",
+      "titleColor": "#222222"
+    },
+    "title": {
+      "color": "#222222"
+    }
   }
 }
