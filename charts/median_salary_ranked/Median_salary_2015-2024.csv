@@ -1,81 +1,81 @@
-﻿Field,Year,Rank
-Business and management,2015,7
-Engineering,2015,3
-Health,2015,1
-Society and Culture,2015,6
-Information Technology,2015,4
-Education,2015,2
-Creative Arts,2015,8
-Natural and Physical Sciences,2015,5
-Business and management,2016,7
-Engineering,2016,3
-Health,2016,1
-Society and Culture,2016,6
-Information Technology,2016,4
-Education,2016,2
-Creative Arts,2016,8
-Natural and Physical Sciences,2016,5
-Business and management,2017,7
-Engineering,2017,2
-Health,2017,1
-Society and Culture,2017,6
-Information Technology,2017,4
-Education,2017,3
-Creative Arts,2017,8
-Natural and Physical Sciences,2017,5
-Business and management,2018,7
-Engineering,2018,3
-Health,2018,1
-Society and Culture,2018,6
-Information Technology,2018,5
-Education,2018,2
-Creative Arts,2018,8
-Natural and Physical Sciences,2018,4
-Business and management,2019,7
-Engineering,2019,3
-Health,2019,1
-Society and Culture,2019,5
-Information Technology,2019,4
-Education,2019,2
-Creative Arts,2019,8
-Natural and Physical Sciences,2019,6
-Business and management,2020,7
-Engineering,2020,3
-Health,2020,1
-Society and Culture,2020,6
-Information Technology,2020,4
-Education,2020,2
-Creative Arts,2020,8
-Natural and Physical Sciences,2020,5
-Business and management,2021,7
-Engineering,2021,3
-Health,2021,1
-Society and Culture,2021,6
-Information Technology,2021,4
-Education,2021,2
-Creative Arts,2021,8
-Natural and Physical Sciences,2021,5
-Business and management,2022,7
-Engineering,2022,3
-Health,2022,1
-Society and Culture,2022,5
-Information Technology,2022,4
-Education,2022,2
-Creative Arts,2022,8
-Natural and Physical Sciences,2022,6
-Business and management,2023,6
-Engineering,2023,2
-Health,2023,1
-Society and Culture,2023,5
-Information Technology,2023,4
-Education,2023,3
-Creative Arts,2023,8
-Natural and Physical Sciences,2023,7
-Business and management,2024,7
-Engineering,2024,2
-Health,2024,1
-Society and Culture,2024,5
-Information Technology,2024,4
-Education,2024,3
-Creative Arts,2024,8
-Natural and Physical Sciences,2024,6
+﻿Field,Year,Rank,Salary
+Business and management,2015,7,50000
+Engineering and Related Technologies,2015,3,60000
+Health,2015,1,63500
+Society and Culture,2015,6,50000
+Information Technology,2015,4,55000
+Education,2015,2,61000
+Creative Arts,2015,8,40000
+Natural and Physical Sciences,2015,5,52000
+Business and management,2016,7,55000
+Engineering and Related Technologies,2016,3,62600
+Health,2016,1,67650
+Society and Culture,2016,6,55000
+Information Technology,2016,4,60000
+Education,2016,2,62900
+Creative Arts,2016,8,48000
+Natural and Physical Sciences,2016,5,55200
+Business and management,2017,7,55200
+Engineering and Related Technologies,2017,2,64000
+Health,2017,1,67475
+Society and Culture,2017,6,57000
+Information Technology,2017,4,59900
+Education,2017,3,63500
+Creative Arts,2017,8,48000
+Natural and Physical Sciences,2017,5,57500
+Business and management,2018,7,58000
+Engineering and Related Technologies,2018,3,65000
+Health,2018,1,70225
+Society and Culture,2018,6,58400
+Information Technology,2018,5,60000
+Education,2018,2,65500
+Creative Arts,2018,8,50100
+Natural and Physical Sciences,2018,4,61000
+Business and management,2019,7,59500
+Engineering and Related Technologies,2019,3,67500
+Health,2019,1,71725
+Society and Culture,2019,5,61000
+Information Technology,2019,4,64000
+Education,2019,2,68000
+Creative Arts,2019,8,52000
+Natural and Physical Sciences,2019,6,60000
+Business and management,2020,7,60000
+Engineering and Related Technologies,2020,3,69500
+Health,2020,1,72075
+Society and Culture,2020,6,62600
+Information Technology,2020,4,65000
+Education,2020,2,70000
+Creative Arts,2020,8,52000
+Natural and Physical Sciences,2020,5,64000
+Business and management,2021,7,60700
+Engineering and Related Technologies,2021,3,70000
+Health,2021,1,76925
+Society and Culture,2021,6,62600
+Information Technology,2021,4,65500
+Education,2021,2,72000
+Creative Arts,2021,8,53000
+Natural and Physical Sciences,2021,5,63000
+Business and management,2022,7,65000
+Engineering and Related Technologies,2022,3,71500
+Health,2022,1,79425
+Society and Culture,2022,5,66700
+Information Technology,2022,4,69000
+Education,2022,2,72200
+Creative Arts,2022,8,56800
+Natural and Physical Sciences,2022,6,66000
+Business and management,2023,6,69200
+Engineering and Related Technologies,2023,2,75000
+Health,2023,1,79900
+Society and Culture,2023,5,69400
+Information Technology,2023,4,74400
+Education,2023,3,75000
+Creative Arts,2023,8,59500
+Natural and Physical Sciences,2023,7,69000
+Business and management,2024,7,72000
+Engineering and Related Technologies,2024,2,80000
+Health,2024,1,84250
+Society and Culture,2024,5,73100
+Information Technology,2024,4,75300
+Education,2024,3,78800
+Creative Arts,2024,8,62600
+Natural and Physical Sciences,2024,6,72400
