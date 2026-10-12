@@ -3,27 +3,76 @@
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/unemployment_2022_vs_2025/Unemployment_2022vs2025.csv"
   },
+  "title": {
+    "text": "Graduate Unemployment in 2022 and 2025, by Field"
+  },
   "mark": { "type": "line", "point": true },
-  "width": { "step": 50 },
+  "width": 239,
+  "height": 154,
   "params": [{ "name": "fieldFilter", "value": "All" }],
   "transform": [
     {
       "calculate": "toNumber(replace(datum.Unemployment, '%', ''))",
       "as": "Percentage"
-    },
-    {
-      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
     }
   ],
-  "title": {
-    "text": "Graduate Unemployment in 2022 and 2025"
-  },
   "encoding": {
     "x": { "field": "Year", "type": "ordinal", "axis": { "labelAngle": 0 } },
     "y": {
       "field": "Percentage",
       "type": "quantitative"
     },
-    "color": { "field": "Field" }
+    "color": {
+      "field": "Field",
+      "legend": {
+        "labelLimit": 0,
+        "labelExpr": "{'Business and management': ['Business and','management'], 'Society and Culture': ['Society and','Culture'], 'Information Technology': ['Information','Technology'], 'Natural and Physical Sciences': ['Natural and','Physical Sciences']}[datum.label] || datum.label"
+      },
+      "scale": {
+        "domain": [
+          "Business and management",
+          "Engineering",
+          "Health",
+          "Society and Culture",
+          "Information Technology",
+          "Education",
+          "Creative Arts",
+          "Natural and Physical Sciences"
+        ],
+        "range": [
+          "#0072B2",
+          "#E69F00",
+          "#C23B22",
+          "#CC79A7",
+          "#56B4E9",
+          "#009E73",
+          "#7E57C2",
+          "#8D6E4B"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Field",
+        "title": "Field"
+      },
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "format": "d",
+        "title": "Year"
+      },
+      {
+        "field": "Unemployment",
+        "title": "Percent of Unemployed Graduates"
+      }
+    ],
+    "opacity": {
+      "condition": {
+        "test": "fieldFilter === 'All' || datum.Field === fieldFilter",
+        "value": 1
+      },
+      "value": 0.15
+    }
   }
 }

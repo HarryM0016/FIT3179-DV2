@@ -4,7 +4,7 @@
     "text": "Change in Median Salary for 2022 Graduates by Field",
     "anchor": "start"
   },
-  "width": 225,
+  "width": 208,
   "height": 166,
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/median_salary_three_years_later/Field_median_salary_2022vs2025.csv"

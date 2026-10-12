@@ -7,17 +7,97 @@
     "text": "Fields Ranked by Median Graduate Salary, 2015-2024",
     "anchor": "start"
   },
-  "params": [{ "name": "fieldFilter", "value": "All" }],
-  "transform": [
+  "width": 243,
+  "params": [
     {
-      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
+      "name": "fieldFilter",
+      "value": "All"
     }
   ],
-  "mark": { "type": "line", "point": true },
+  "mark": {
+    "type": "line",
+    "point": true
+  },
   "encoding": {
-    "x": { "field": "Year", "type": "temporal" },
-    "y": { "field": "Rank", "type": "nominal" },
-    "order": { "field": "Year", "type": "quantitative" },
-    "color": { "field": "Field" }
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "scale": {
+        "domain": [2015, 2024]
+      },
+      "axis": {
+        "title": "Year",
+        "format": "d",
+        "values": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+      }
+    },
+    "y": {
+      "field": "Rank",
+      "type": "ordinal",
+      "axis": {
+        "title": "Rank"
+      }
+    },
+    "order": {
+      "field": "Year",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Field",
+      "legend": {
+        "labelLimit": 0,
+        "labelExpr": "{'Business and management': ['Business and','management'], 'Society and Culture': ['Society and','Culture'], 'Information Technology': ['Information','Technology'], 'Natural and Physical Sciences': ['Natural and','Physical Sciences']}[datum.label] || datum.label"
+      },
+      "scale": {
+        "domain": [
+          "Business and management",
+          "Engineering",
+          "Health",
+          "Society and Culture",
+          "Information Technology",
+          "Education",
+          "Creative Arts",
+          "Natural and Physical Sciences"
+        ],
+        "range": [
+          "#0072B2",
+          "#E69F00",
+          "#C23B22",
+          "#CC79A7",
+          "#56B4E9",
+          "#009E73",
+          "#7E57C2",
+          "#8D6E4B"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Field",
+        "title": "Field"
+      },
+      {
+        "field": "Year",
+        "type": "quantitative",
+        "format": "d",
+        "title": "Year"
+      },
+      {
+        "field": "Rank",
+        "title": "Rank"
+      },
+      {
+        "field": "Salary",
+        "title": "Median Salary",
+        "format": "$,"
+      }
+    ],
+    "opacity": {
+      "condition": {
+        "test": "fieldFilter === 'All' || datum.Field === fieldFilter",
+        "value": 1
+      },
+      "value": 0.15
+    }
   }
 }
