@@ -60,6 +60,10 @@
     "color": {
       "field": "Year",
       "type": "nominal",
+      "scale": {
+        "domain": ["2022 graduate", "2022 graduate in 2025"],
+        "range": ["#2F4A6B", "#8095AE"]
+      },
       "legend": {
         "labelLimit": 0,
         "labelExpr": "{'2022 graduate': ['2022','graduate','in 2022'], '2022 graduate in 2025': ['2022','graduate','in 2025']}[datum.label] || datum.label"

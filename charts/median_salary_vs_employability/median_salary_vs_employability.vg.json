@@ -1,9 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Graduate Median Salary and Professional Full-Time Employment Percent by Field",
+    "text": "Graduate Median Salary and Professional Full-Time Employment Percent by Field, 2025",
     "anchor": "start"
   },
+  "width": 230,
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/median_salary_vs_employability/Field_median_salary_2025.csv"
   },
@@ -12,14 +13,10 @@
     {
       "calculate": "toNumber(replace(datum.Value, '%', ''))",
       "as": "Percentage"
-    },
-    {
-      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
     }
   ],
   "mark": {
     "type": "circle",
-    "opacity": 0.75,
     "stroke": "#ffffff",
     "strokeWidth": 0.5
   },
@@ -38,14 +35,43 @@
       "axis": { "tickCount": 5 },
       "scale": { "domain": [0, 100] }
     },
-    "color": { "field": "Field" },
+    "color": {
+      "field": "Field",
+      "title": "Field",
+      "legend": {
+        "labelLimit": 0,
+        "labelExpr": "{'Business and management': ['Business and','management'], 'Society and Culture': ['Society and','Culture'], 'Information Technology': ['Information','Technology'], 'Natural and Physical Sciences': ['Natural and','Physical Sciences']}[datum.label] || datum.label"
+      },
+      "scale": {
+        "domain": [
+          "Business and management",
+          "Engineering",
+          "Health",
+          "Society and Culture",
+          "Information Technology",
+          "Education",
+          "Creative Arts",
+          "Natural and Physical Sciences"
+        ],
+        "range": [
+          "#0072B2",
+          "#E69F00",
+          "#C23B22",
+          "#CC79A7",
+          "#56B4E9",
+          "#009E73",
+          "#7E57C2",
+          "#8D6E4B"
+        ]
+      }
+    },
     "size": {
-      "field": "Enrolment",
+      "field": "Enrollment",
       "type": "quantitative",
       "scale": {
         "type": "threshold",
         "domain": [50000, 75000, 125000],
-        "range": [50, 120, 240, 400]
+        "range": [100, 200, 300, 400]
       },
       "legend": { "format": ".1s" }
     },
@@ -61,7 +87,14 @@
         "field": "Value",
         "title": "Professional Full-Time Employment"
       },
-      { "field": "Enrolment", "type": "quantitative", "format": "," }
-    ]
+      { "field": "Enrollment", "type": "quantitative", "format": "," }
+    ],
+    "opacity": {
+      "condition": {
+        "test": "fieldFilter === 'All' || datum.Field === fieldFilter",
+        "value": 0.75
+      },
+      "value": 0.15
+    }
   }
 }
