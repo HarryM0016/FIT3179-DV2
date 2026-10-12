@@ -28,7 +28,7 @@
     "y": {
       "field": "Count",
       "type": "quantitative",
-      "axis": { "title": "Commencing undergraduate students" }
+      "axis": { "title": "Student Count" }
     },
     "color": {
       "field": "Field",
