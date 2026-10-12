@@ -5,7 +5,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/commencing_student_counts/Commencing_Student_Counts_2015-2024.csv"
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/commencing_student_counts/Commencing_Student_Counts_2015-2024.csv"
   },
   "mark": {
     "type": "line",
@@ -44,7 +44,7 @@
       "scale": {
         "domain": [
           "Business and management",
-          "Engineering and Related Technologies",
+          "Engineering",
           "Health",
           "Society and Culture",
           "Information Technology",

@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/median_salary_ranked/Median_salary_2015-2024.csv"
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/median_salary_ranked/Median_salary_2015-2024.csv"
   },
   "title": {
     "text": "Fields Ranked by Median Graduate Salary, 2015-2024",

@@ -5,7 +5,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/salary_three_years_later/Field_median_salary_2022vs2025.csv"
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/salary_three_years_later/Field_median_salary_2022vs2025.csv"
   },
   "params": [{ "name": "fieldFilter", "value": "All" }],
   "transform": [
