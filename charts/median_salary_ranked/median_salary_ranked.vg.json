@@ -7,6 +7,12 @@
     "text": "Fields Ranked by Median Graduate Salary, 2015-2024",
     "anchor": "start"
   },
+  "params": [{ "name": "fieldFilter", "value": "All" }],
+  "transform": [
+    {
+      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
+    }
+  ],
   "mark": { "type": "line", "point": true },
   "encoding": {
     "x": { "field": "Year", "type": "temporal" },

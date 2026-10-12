@@ -5,10 +5,14 @@
   },
   "mark": { "type": "line", "point": true },
   "width": { "step": 50 },
+  "params": [{ "name": "fieldFilter", "value": "All" }],
   "transform": [
     {
       "calculate": "toNumber(replace(datum.Unemployment, '%', ''))",
       "as": "Percentage"
+    },
+    {
+      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
     }
   ],
   "title": {
