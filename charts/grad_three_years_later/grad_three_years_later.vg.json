@@ -1,0 +1,93 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Proportion of Graduates in Professional Full-Time Positions by Field"
+    ],
+    "anchor": "start"
+  },
+  "width": 228,
+  "height": 204,
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/grad_three_years_later/professional_fulltime_2022vs2025.csv"
+  },
+  "params": [
+    {
+      "name": "fieldFilter",
+      "value": "All"
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "toNumber(replace(datum.Value, '%', ''))",
+      "as": "Percentage"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Field",
+      "type": "nominal",
+      "sort": [
+        "Business and management",
+        "Engineering",
+        "Health",
+        "Society and Culture",
+        "Information Technology",
+        "Education",
+        "Creative Arts",
+        "Natural and Physical Sciences"
+      ],
+      "axis": {
+        "title": null,
+        "labelLineHeight": 8,
+        "labelLimit": 0,
+        "labelExpr": "{'Business and management': ['Business and','management'], 'Society and Culture': ['Society and','Culture'], 'Information Technology': ['Information','Technology'], 'Natural and Physical Sciences': ['Natural and','Physical Sciences']}[datum.label] || datum.label"
+      }
+    },
+    "yOffset": {
+      "field": "Year",
+      "type": "nominal"
+    },
+    "x": {
+      "field": "Percentage",
+      "type": "quantitative",
+      "title": "Professional Full-Time (%)",
+      "scale": {
+        "domain": [0, 100]
+      }
+    },
+    "color": {
+      "field": "Year",
+      "type": "nominal",
+      "legend": {
+        "labelLimit": 0,
+        "labelExpr": "{'2022 graduate': ['2022','graduate','in 2022'], '2022 graduate in 2025': ['2022','graduate','in 2025']}[datum.label] || datum.label"
+      }
+    },
+    "opacity": {
+      "condition": {
+        "test": "fieldFilter === 'All' || datum.Field === fieldFilter",
+        "value": 1
+      },
+      "value": 0.15
+    },
+    "tooltip": [
+      {
+        "field": "Field",
+        "type": "nominal",
+        "title": "Field"
+      },
+      {
+        "field": "Year",
+        "type": "nominal",
+        "title": "Year"
+      },
+      {
+        "field": "Value",
+        "type": "nominal",
+        "title": "Professional Full-time Percent"
+      }
+    ]
+  }
+}

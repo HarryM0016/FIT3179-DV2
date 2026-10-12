@@ -82,8 +82,14 @@ p science {
   font-weight: 700;
 }
 
+p bold {
+  font-weight: 700;
+}
+
 .page {
-  width: 850px;
+  width: 100%; 
+  max-width: 900px; 
+  box-sizing: border-box;
   background-color: var(--panel-bg);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
   margin: 24px auto;
@@ -95,7 +101,7 @@ p science {
   margin: -35px -50px 40px;
 }
 
-.intro {
+.title {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -106,8 +112,12 @@ p science {
   color: var(--on-accent);
 }
 
-.intro h1 {
+.title h1 {
   color: var(--on-accent);
+}
+
+.centre {
+  text-align: center;
 }
 
 .field-filter {

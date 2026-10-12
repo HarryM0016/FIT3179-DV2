@@ -3,9 +3,9 @@
   <head>
     <title>Multiple Visualisations | An Example</title>
     <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.33.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.23.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.29.0"></script>
 
     <!-- Import pure.css -->
     <link
@@ -31,11 +31,11 @@
   <body>
     <div class="page">
       <div class="pure-g">
-        <div class="pure-u-1-1 intro">
+        <div class="pure-u-1-1 title">
           <h1>Does Your Degree Decide Your Destiny?</h1>
           <p>
             Every year, tens of thousands of Australians graduate with a degree
-            and the same question: what happens next?
+            and wonder the same question:<br />what happens next?
           </p>
           <p>
             This visualisation follows Australian graduates from enrolment into
@@ -167,7 +167,6 @@
         </div>
       </div>
 
-      <!-- pure grid group -->
       <div class="pure-g">
         <div class="pure-u-1-2">
           <div class="description description-left">
@@ -205,16 +204,108 @@
           ></div>
         </div>
       </div>
-      <!-- end pure grid group -->
+
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <h2>What Happens After Graduation?</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div
+            id="vis2"
+            class="vis-container"
+            data-vega-spec="./charts/outcome_after_grad/outcome_after_grad.vg.json"
+          ></div>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-1 centre">
+          <p>
+            Where graduates end up depends heavily on their field. In 2025,
+            <education>education</education> graduates were the most likely to
+            move straight into professional full-time work
+            (<education>72.4%</education>), at a time of a
+            <bold>national shortage</bold> of teachers.
+            <br />
+            <br />
+            <science>Natural and physical sciences</science> graduates took a
+            different route. At 35.9%, they had the highest share going on to
+            further study, meaning fewer entered the workforce directly.
+            <br />
+            <br />
+            For some graduates, neither path opened up as easily.
+            <creative-arts>Creative arts</creative-arts>
+            (<creative-arts>29.4%</creative-arts>) and
+            <information-technology
+              >information technology</information-technology
+            >
+            (<information-technology>22.7%</information-technology>) had the
+            largest shares outside both full-time work and further study,
+            pointing to a harder entry into those industries.
+          </p>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <p>
+              It does get easier. Three years after graduating, every field has
+              a higher share of the 2022 cohort in professional full-time work.
+              The biggest gains went to the fields that started weakest:
+              <creative-arts>creative arts</creative-arts> climbed from 36.1% to
+              70.9% (+34.8 points), and
+              <science>natural and physical sciences</science> and
+              <society-and-culture>society and culture</society-and-culture>
+              each gained about 30 points.
+              <br />
+              <br />
+              <information-technology
+                >Information technology</information-technology
+              >
+              shows the sharpest turnaround. After a difficult start for many
+              graduates, it reached 90.5%, ahead of
+              <engineering>engineering</engineering> and second only to
+              <education>education</education> (92.6%). Education started
+              highest and gained least (+12.8 points), so the gap between fields
+              has narrowed from about 44 points in 2022 to 22 in 2025.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+          <div
+            id="vis1"
+            class="vis-container"
+            data-vega-spec="./charts/grad_three_years_later/grad_three_years_later.vg.json"
+          ></div>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-1 centre">
+          <p>
+            Slow starts don't have to be the end of the story.
+            <br /> 
+            But a professional job isn't the same as a well-paid one, so what is each
+            field worth?
+          </p>
+        </div>
+      </div>
 
       <div class="pure-g">
         <div class="pure-u-1-1 small-font">
           <p>
             This visualisation is created by
-            <a href="https://fit3179.github.io/Vega-Lite/" target="_blank"
-              >FIT3179 Teaching Team</a
-            >. The datasource is
-            <a href="#" target=" _blank">some data repository online</a>.
+            <a
+              href="https://github.com/HarryM0016/FIT3179-DV2.git"
+              target="_blank"
+              >Harrison Miller</a
+            >.
           </p>
         </div>
       </div>

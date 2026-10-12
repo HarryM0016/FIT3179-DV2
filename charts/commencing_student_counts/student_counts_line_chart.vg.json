@@ -4,6 +4,8 @@
     "text": "Commencing Undergraduate Student Counts by Field, 2015-2024",
     "anchor": "start"
   },
+  "width": 212,
+  "height": 214,
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/commencing_student_counts/Commencing_Student_Counts_2015-2024.csv"
   },
@@ -41,6 +43,10 @@
       "field": "Field",
       "type": "nominal",
       "title": "Field",
+      "legend": {
+        "labelLimit": 0,
+        "labelExpr": "{'Business and management': ['Business and','management'], 'Society and Culture': ['Society and','Culture'], 'Information Technology': ['Information','Technology'], 'Natural and Physical Sciences': ['Natural and','Physical Sciences']}[datum.label] || datum.label"
+      },
       "scale": {
         "domain": [
           "Business and management",

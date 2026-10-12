@@ -1,25 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "One-level Sankey: field of study -> graduate outcome",
-  "width": 700,
-  "height": 600,
-  "padding": { "left": 240, "right": 210, "top": 70, "bottom": 20 },
-  "background": "#fafafa",
+  "width": 627,
+  "height": 382,
   "title": {
-    "text": "Where do graduates end up?",
-    "subtitle": "Share of each field's graduates by outcome",
-    "fontSize": 26,
-    "subtitleFontSize": 14,
+    "text": "Graduate Outcomes by Field, 2025",
     "anchor": "start",
-    "frame": "group",
-    "offset": 24
+    "frame": "group"
   },
-  "params": [{ "name": "fieldFilter", "value": "All" }],
-  "transform": [
-    {
-      "filter": "fieldFilter === 'All' || datum.Field === fieldFilter"
-    }
-  ],
   "signals": [
     {
       "name": "standardGap",
@@ -30,6 +17,10 @@
       "name": "base",
       "value": "center",
       "description": "Stack offset: center or zero"
+    },
+    {
+      "name": "fieldFilter",
+      "value": "All"
     }
   ],
   "data": [
@@ -38,6 +29,7 @@
       "values": [
         {
           "category": "Business and management",
+          "wrapped": "Business and|management",
           "stack": 1,
           "sort": 1,
           "labels": "left",
@@ -45,6 +37,7 @@
         },
         {
           "category": "Engineering",
+          "wrapped": "Engineering",
           "stack": 1,
           "sort": 2,
           "labels": "left",
@@ -52,6 +45,7 @@
         },
         {
           "category": "Health",
+          "wrapped": "Health",
           "stack": 1,
           "sort": 3,
           "labels": "left",
@@ -59,6 +53,7 @@
         },
         {
           "category": "Society and Culture",
+          "wrapped": "Society and|Culture",
           "stack": 1,
           "sort": 4,
           "labels": "left",
@@ -66,6 +61,7 @@
         },
         {
           "category": "Information Technology",
+          "wrapped": "Information|Technology",
           "stack": 1,
           "sort": 5,
           "labels": "left",
@@ -73,6 +69,7 @@
         },
         {
           "category": "Education",
+          "wrapped": "Education",
           "stack": 1,
           "sort": 6,
           "labels": "left",
@@ -80,6 +77,7 @@
         },
         {
           "category": "Creative Arts",
+          "wrapped": "Creative Arts",
           "stack": 1,
           "sort": 7,
           "labels": "left",
@@ -87,6 +85,7 @@
         },
         {
           "category": "Natural and Physical Sciences",
+          "wrapped": "Natural and|Physical Sciences",
           "stack": 1,
           "sort": 8,
           "labels": "left",
@@ -94,6 +93,7 @@
         },
         {
           "category": "Professional full-time",
+          "wrapped": "Professional|full-time",
           "stack": 2,
           "sort": 1,
           "labels": "right",
@@ -101,6 +101,7 @@
         },
         {
           "category": "Non-professional full-time",
+          "wrapped": "Non-professional|full-time",
           "stack": 2,
           "sort": 2,
           "labels": "right",
@@ -108,6 +109,7 @@
         },
         {
           "category": "Further study",
+          "wrapped": "Further study",
           "stack": 2,
           "sort": 3,
           "labels": "right",
@@ -115,6 +117,7 @@
         },
         {
           "category": "Other",
+          "wrapped": "Other",
           "stack": 2,
           "sort": 4,
           "labels": "right",
@@ -180,6 +183,12 @@
           "Non-professional full-time": 25.33,
           "Further study": 35.9,
           "Other": 1.7
+        }
+      ],
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "fieldFilter === 'All' || datum.source === fieldFilter"
         }
       ]
     },
@@ -283,7 +292,17 @@
     {
       "name": "finalTable",
       "source": "plottedStacks",
-      "transform": [{ "type": "filter", "expr": "datum.type == 'data'" }]
+      "transform": [
+        { "type": "filter", "expr": "datum.type == 'data'" },
+        {
+          "type": "lookup",
+          "from": "nodes",
+          "key": "category",
+          "values": ["wrapped"],
+          "fields": ["name"],
+          "as": ["wrapped"]
+        }
+      ]
     },
     {
       "name": "linkTable",
@@ -373,6 +392,30 @@
       "zero": true
     },
     {
+      "name": "fieldColor",
+      "type": "ordinal",
+      "domain": [
+        "Business and management",
+        "Engineering",
+        "Health",
+        "Society and Culture",
+        "Information Technology",
+        "Education",
+        "Creative Arts",
+        "Natural and Physical Sciences"
+      ],
+      "range": [
+        "#0072B2",
+        "#E69F00",
+        "#C23B22",
+        "#CC79A7",
+        "#56B4E9",
+        "#009E73",
+        "#7E57C2",
+        "#8D6E4B"
+      ]
+    },
+    {
       "name": "color",
       "type": "ordinal",
       "domain": [
@@ -395,7 +438,7 @@
           "y": { "scale": "y", "field": "y0" },
           "y2": { "scale": "y", "field": "y1" },
           "fill": {
-            "signal": "datum.stack == 1 ? '#6b7280' : scale('color', datum.name)"
+            "signal": "datum.stack == 1 ? scale('fieldColor', datum.name) : scale('color', datum.name)"
           },
           "fillOpacity": { "value": 0.9 },
           "tooltip": { "signal": "{'Name': datum.name}" }
@@ -430,10 +473,14 @@
             "signal": "datum.labels == 'left' ? scale('x', datum.stack) - 8 : scale('x', datum.stack) + bandwidth('x') + 8"
           },
           "y": { "signal": "scale('y', datum.yc)" },
-          "text": { "field": "name" },
+          "text": {
+            "signal": "split(datum.wrapped, '|')"
+          },
+          "lineHeight": { "value": 14 },
           "align": { "signal": "datum.labels == 'left' ? 'right' : 'left'" },
           "baseline": { "value": "middle" },
-          "fontSize": { "value": 13 },
+          "font": { "value": "Source Sans 3" },
+          "fontSize": { "value": 12 },
           "fill": { "value": "#333333" }
         }
       }
