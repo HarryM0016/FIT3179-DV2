@@ -1,0 +1,411 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Net Domestic Student Migration Between States, 2024",
+    "anchor": "start"
+  },
+  "width": 388,
+  "height": 373,
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "stateFilter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "South Australia",
+          "Western Australia",
+          "Tasmania",
+          "Northern Territory",
+          "Australian Capital Territory"
+        ],
+        "name": "Highlight state: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/9_choropleth_map/STE_2016_AUST.json",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2016_AUST"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EEF1F5",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/domestic_student_migration.csv"
+      },
+      "transform": [
+        {
+          "lookup": "Origin",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/state_centre_locations.csv"
+            },
+            "key": "State",
+            "fields": ["Lon", "Lat"]
+          },
+          "as": ["lon1", "lat1"]
+        },
+        {
+          "lookup": "Destination",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/state_centre_locations.csv"
+            },
+            "key": "State",
+            "fields": ["Lon", "Lat"]
+          },
+          "as": ["lon2", "lat2"]
+        },
+        {
+          "calculate": "(180/PI)*log(tan(PI/4+toNumber(datum.lat1)*PI/360))",
+          "as": "y1"
+        },
+        {
+          "calculate": "(180/PI)*log(tan(PI/4+toNumber(datum.lat2)*PI/360))",
+          "as": "y2"
+        },
+        {
+          "calculate": "toNumber(datum.lon1)+0.7*(toNumber(datum.lon2)-toNumber(datum.lon1))",
+          "as": "ax"
+        },
+        {
+          "calculate": "(360/PI)*atan(exp((datum.y1+0.7*(datum.y2-datum.y1))*PI/180))-90",
+          "as": "alat"
+        },
+        {
+          "calculate": "atan2(toNumber(datum.lon2)-toNumber(datum.lon1), datum.y2-datum.y1)*180/PI",
+          "as": "angle"
+        },
+        {
+          "calculate": "datum.Net_Students<500?60:datum.Net_Students<2000?130:240",
+          "as": "arrowSize"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeCap": "butt"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon1",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat1",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        },
+        "stroke": {
+          "field": "Net_Students",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [500, 2000],
+            "range": ["#9FB0C3", "#5F6F82", "#1B2A41"]
+          },
+          "legend": {
+            "title": "Net students moved",
+            "orient": "bottom-left",
+            "symbolType": "stroke",
+            "symbolSize": 500,
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "labelOffset": 8,
+            "rowPadding": 6,
+            "labelExpr": "['Under 500','500 \u2013 2,000','2,000 or more'][datum.index]"
+          }
+        },
+        "strokeWidth": {
+          "field": "Net_Students",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [500, 2000],
+            "range": [1.5, 4.5, 9]
+          },
+          "legend": {
+            "title": "Net students moved",
+            "orient": "bottom-left",
+            "symbolType": "stroke",
+            "symbolSize": 500,
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "labelOffset": 8,
+            "rowPadding": 6,
+            "labelExpr": "['Under 500','500 \u2013 2,000','2,000 or more'][datum.index]"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "stateFilter === 'All' || datum.Origin === stateFilter || datum.Destination === stateFilter",
+            "value": 0.9
+          },
+          "value": 0.07
+        },
+        "order": {
+          "field": "Net_Students",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "Origin",
+            "type": "nominal",
+            "title": "Net flow origin"
+          },
+          {
+            "field": "Destination",
+            "type": "nominal",
+            "title": "Net flow destination"
+          },
+          {
+            "field": "Net_Students",
+            "type": "quantitative",
+            "title": "Net students moved",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/domestic_student_migration.csv"
+      },
+      "transform": [
+        {
+          "lookup": "Origin",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/state_centre_locations.csv"
+            },
+            "key": "State",
+            "fields": ["Lon", "Lat"]
+          },
+          "as": ["lon1", "lat1"]
+        },
+        {
+          "lookup": "Destination",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/state_centre_locations.csv"
+            },
+            "key": "State",
+            "fields": ["Lon", "Lat"]
+          },
+          "as": ["lon2", "lat2"]
+        },
+        {
+          "calculate": "(180/PI)*log(tan(PI/4+toNumber(datum.lat1)*PI/360))",
+          "as": "y1"
+        },
+        {
+          "calculate": "(180/PI)*log(tan(PI/4+toNumber(datum.lat2)*PI/360))",
+          "as": "y2"
+        },
+        {
+          "calculate": "toNumber(datum.lon1)+0.7*(toNumber(datum.lon2)-toNumber(datum.lon1))",
+          "as": "ax"
+        },
+        {
+          "calculate": "(360/PI)*atan(exp((datum.y1+0.7*(datum.y2-datum.y1))*PI/180))-90",
+          "as": "alat"
+        },
+        {
+          "calculate": "atan2(toNumber(datum.lon2)-toNumber(datum.lon1), datum.y2-datum.y1)*180/PI",
+          "as": "angle"
+        },
+        {
+          "calculate": "datum.Net_Students<500?60:datum.Net_Students<2000?130:240",
+          "as": "arrowSize"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "triangle-up",
+        "filled": true,
+        "strokeWidth": 0
+      },
+      "encoding": {
+        "longitude": {
+          "field": "ax",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "alat",
+          "type": "quantitative"
+        },
+        "angle": {
+          "field": "angle",
+          "type": "quantitative",
+          "scale": null
+        },
+        "size": {
+          "field": "arrowSize",
+          "type": "quantitative",
+          "scale": null
+        },
+        "color": {
+          "field": "Net_Students",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [500, 2000],
+            "range": ["#9FB0C3", "#5F6F82", "#1B2A41"]
+          },
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "stateFilter === 'All' || datum.Origin === stateFilter || datum.Destination === stateFilter",
+            "value": 0.9
+          },
+          "value": 0.07
+        },
+        "order": {
+          "field": "Net_Students",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "Origin",
+            "type": "nominal",
+            "title": "Net flow origin"
+          },
+          {
+            "field": "Destination",
+            "type": "nominal",
+            "title": "Net flow destination"
+          },
+          {
+            "field": "Net_Students",
+            "type": "quantitative",
+            "title": "Net students moved",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/10_flow_map/state_centre_locations.csv"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 50,
+            "color": "#1B2A41"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "Lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Lat",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "State",
+                "type": "nominal",
+                "title": "State"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": "bold",
+            "color": "#1B2A41",
+            "dx": 9,
+            "dy": -8,
+            "align": "left"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "Lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "Abbr",
+              "type": "nominal"
+            }
+          },
+          "transform": [
+            {
+              "filter": {
+                "not": {
+                  "field": "State",
+                  "oneOf": ["South Australia", "Victoria"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": "bold",
+            "color": "#1B2A41",
+            "dx": -9,
+            "dy": -8,
+            "align": "right"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "Lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "Abbr",
+              "type": "nominal"
+            }
+          },
+          "transform": [
+            {
+              "filter": {
+                "field": "State",
+                "oneOf": ["South Australia", "Victoria"]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
