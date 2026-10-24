@@ -6,7 +6,7 @@
   },
   "width": 187,
   "data": {
-    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/median_salary_vs_gender/Gender_median_salary_2025.csv"
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/6_diverging_lollypop_chart/Gender_median_salary_2025.csv"
   },
   "params": [{ "name": "fieldFilter", "value": "All" }],
   "transform": [
