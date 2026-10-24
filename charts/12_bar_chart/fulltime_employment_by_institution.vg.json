@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Proportion of Graduates in Professional Full-Time Positions by Institution"
+    ],
+    "anchor": "start"
+  },
+  "width": 637,
+  "height": 259,
+  "data": {
+    "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/12_bar_chart/University_fulltime_employment_2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.GO8 === 'Yes' ? 'Group of Eight' : 'Other university'",
+      "as": "Group"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Institution",
+      "type": "nominal",
+      "sort": "-y",
+      "axis": {
+        "title": null,
+        "labelAngle": -90,
+        "labelLimit": 0,
+        "labelFontSize": 11,
+        "labelLineHeight": 12,
+        "labelExpr": "[slice(datum.label,0,(lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' ')<0 ? floor(length(datum.label)/2)+indexof(slice(datum.label,floor(length(datum.label)/2)),' ') : (indexof(slice(datum.label,floor(length(datum.label)/2)),' ')<0 ? lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' ') : ((floor(length(datum.label)/2)-lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' '))<=indexof(slice(datum.label,floor(length(datum.label)/2)),' ') ? lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' ') : floor(length(datum.label)/2)+indexof(slice(datum.label,floor(length(datum.label)/2)),' '))))), slice(datum.label,(lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' ')<0 ? floor(length(datum.label)/2)+indexof(slice(datum.label,floor(length(datum.label)/2)),' ') : (indexof(slice(datum.label,floor(length(datum.label)/2)),' ')<0 ? lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' ') : ((floor(length(datum.label)/2)-lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' '))<=indexof(slice(datum.label,floor(length(datum.label)/2)),' ') ? lastindexof(slice(datum.label,0,floor(length(datum.label)/2)),' ') : floor(length(datum.label)/2)+indexof(slice(datum.label,floor(length(datum.label)/2)),' '))))+1)]"
+      }
+    },
+    "y": {
+      "field": "Employment",
+      "type": "quantitative",
+      "title": "Professional Full-Time (%)",
+      "scale": {
+        "domain": [0, 100]
+      }
+    },
+    "color": {
+      "field": "GO8",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Yes", "No"],
+        "range": ["#1F4E8C", "#E07A1F"]
+      },
+      "legend": {
+        "title": "University group",
+        "titleFontSize": 12,
+        "labelFontSize": 12,
+        "labelExpr": "datum.label === 'Yes' ? 'Group of Eight' : 'Other universities'",
+        "symbolOpacity": 0.9
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Institution",
+        "type": "nominal",
+        "title": "Institution"
+      },
+      {
+        "field": "Employment",
+        "type": "quantitative",
+        "title": "Professional full-time (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "Group",
+        "type": "nominal",
+        "title": "Group"
+      }
+    ]
+  }
+}

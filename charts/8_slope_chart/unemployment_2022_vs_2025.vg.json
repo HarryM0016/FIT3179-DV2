@@ -4,7 +4,8 @@
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/8_slope_chart/Unemployment_2022vs2025.csv"
   },
   "title": {
-    "text": "Graduate Unemployment in 2022 and 2025, by Field"
+    "text": "Graduate Unemployment in 2022 and 2025, by Field",
+    "anchor": "start"
   },
   "mark": { "type": "line", "point": true },
   "width": 239,
