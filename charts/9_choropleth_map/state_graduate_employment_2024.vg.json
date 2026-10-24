@@ -4,7 +4,7 @@
     "text": "Graduates per 100,000 Residents by State, 2024",
     "anchor": "start"
   },
-  "width": 800,
+  "width": 291,
   "height": 400,
   "projection": {
     "type": "mercator"
@@ -39,7 +39,7 @@
         "color": {
           "field": "Normalised_graduates",
           "type": "quantitative",
-          "title": "Graduates per 100,000 residents",
+          "title": ["Graduates per", "100,000 residents"],
           "scale": {
             "scheme": "blues"
           }
