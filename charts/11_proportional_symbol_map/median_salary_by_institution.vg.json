@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 790,
+  "height": 371,
+  "title": {
+    "text": "Median Graduate Salary by Institution, 2025",
+    "anchor": "start"
+  },
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "groupFilter",
+      "value": "All universities",
+      "bind": {
+        "input": "select",
+        "options": ["All universities", "Go8 only", "Non-Go8 only"],
+        "name": "Show: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/9_choropleth_map/STE_2016_AUST.json",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2016_AUST"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EEF1F5",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/11_proportional_symbol_map/median_salary_by_institution.csv"
+      },
+      "transform": [
+        {
+          "filter": "groupFilter === 'All universities' || (groupFilter === 'Go8 only' && datum.GO8 === 'Yes') || (groupFilter === 'Non-Go8 only' && datum.GO8 === 'No')"
+        },
+        {
+          "calculate": "datum.GO8 === 'Yes' ? 'Group of Eight' : 'Other university'",
+          "as": "Group"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "count",
+              "as": "n"
+            },
+            {
+              "op": "mean",
+              "field": "Lon",
+              "as": "cLon"
+            },
+            {
+              "op": "mean",
+              "field": "Lat",
+              "as": "cLat"
+            }
+          ],
+          "groupby": ["City"]
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "idx"
+            }
+          ],
+          "groupby": ["City"],
+          "sort": [
+            {
+              "field": "Median Salary",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.n > 1 ? datum.cLon + 1*cos(2*PI*(datum.idx-1)/datum.n+PI/2) : datum.Lon",
+          "as": "plotLon"
+        },
+        {
+          "calculate": "datum.n > 1 ? datum.cLat + 1*sin(2*PI*(datum.idx-1)/datum.n+PI/2)*cos(datum.cLat*PI/180) : datum.Lat",
+          "as": "plotLat"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "longitude": {
+          "field": "plotLon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "plotLat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "Median Salary",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [65000, 85000],
+            "range": [60, 700],
+            "zero": false
+          },
+          "legend": {
+            "title": "Median salary",
+            "values": [70000, 75000, 80000],
+            "format": "$,.0f",
+            "orient": "bottom-left",
+            "symbolFillColor": "#8095AE",
+            "symbolStrokeColor": "#FFFFFF",
+            "titleFontSize": 12,
+            "labelFontSize": 12
+          }
+        },
+        "color": {
+          "field": "GO8",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Yes", "No"],
+            "range": ["#1F4E8C", "#E07A1F"]
+          },
+          "legend": {
+            "title": "University group",
+            "orient": "top-left",
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "labelExpr": "datum.label === 'Yes' ? 'Group of Eight' : 'Other universities'",
+            "symbolOpacity": 0.9
+          }
+        },
+        "order": {
+          "field": "Median Salary",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "Institution",
+            "type": "nominal",
+            "title": "Institution"
+          },
+          {
+            "field": "Median Salary",
+            "type": "quantitative",
+            "title": "Median salary",
+            "format": "$,.0f"
+          },
+          {
+            "field": "Group",
+            "type": "nominal",
+            "title": "Group"
+          },
+          {
+            "field": "City",
+            "type": "nominal",
+            "title": "City"
+          }
+        ]
+      }
+    }
+  ]
+}
