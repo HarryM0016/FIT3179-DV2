@@ -170,6 +170,102 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/11_proportional_symbol_map/median_salary_by_institution.csv"
+      },
+      "transform": [
+        {
+          "filter": "groupFilter === 'All' || datum.GO8 === groupFilter"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "count",
+              "as": "n"
+            },
+            {
+              "op": "mean",
+              "field": "Lon",
+              "as": "cLon"
+            },
+            {
+              "op": "mean",
+              "field": "Lat",
+              "as": "cLat"
+            }
+          ],
+          "groupby": ["City"]
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "idx"
+            }
+          ],
+          "groupby": ["City"],
+          "sort": [
+            {
+              "field": "Median Salary",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.n > 1 ? datum.cLon + 1*cos(2*PI*(datum.idx-1)/datum.n+PI/2) : datum.Lon",
+          "as": "plotLon"
+        },
+        {
+          "calculate": "datum.n > 1 ? datum.cLat + 1*sin(2*PI*(datum.idx-1)/datum.n+PI/2)*cos(datum.cLat*PI/180) : datum.Lat",
+          "as": "plotLat"
+        },
+        {
+          "window": [
+            {
+              "op": "rank",
+              "as": "rank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "Median Salary",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.rank === 1"
+        },
+        {
+          "calculate": "[datum.Institution, '$' + format(datum['Median Salary'], ',.0f')]",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#111"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "plotLon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "plotLat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
+      }
     }
   ]
 }
