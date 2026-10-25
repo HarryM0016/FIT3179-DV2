@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <title>DV2</title>
-    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <title>Does Your Degree Decide Your Destiny?</title>
+    <!-- Import Vega & Vega-Lite -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.33.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.23.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.29.0"></script>
@@ -31,20 +31,21 @@
   <body>
     <div class="page">
       <div class="pure-g">
-        <div class="pure-u-1-1 title">
+        <div class="pure-u-1-1 title centre">
           <h1>Does Your Degree Decide Your Destiny?</h1>
           <p>
             Every year, tens of thousands of Australians graduate with a degree
             and wonder the same question:<br />what happens next?
           </p>
           <p>
-            This visualisation follows Australian graduates from Enrollment into
-            the workforce, comparing eight broad fields of study on employment,
-            further study, pay and unemployment.
+            This visualisation follows Australian graduates from enrolment through
+            to entry into the workforce, comparing fields of study, geographic movement, 
+            and the truth behind institutional prestige.
           </p>
         </div>
       </div>
 
+      <!-- Filter Section -->
       <section class="field-filter" aria-labelledby="field-filter-title">
         <h6>Click on a field to filter</h6>
         <div
@@ -124,7 +125,7 @@
             aria-pressed="false"
           >
             <img
-              src="assets/school_24dp_009E73_FILL0_wght400_GRAD0_opsz24.svg"
+              src="assets/school_24dp_ff630f_FILL0_wght400_GRAD0_opsz24.svg"
               alt=""
               aria-hidden="true"
             />
@@ -159,10 +160,13 @@
         </div>
       </section>
 
+      <br />
+
+      <!-- Section 1: Broad Trends -->
       <div class="pure-g">
-        <div class="pure-u-1-2">
+        <div class="pure-u-1-1">
           <div class="description description-left">
-            <h2>What Do People Study?</h2>
+            <h2>The Pipeline: What We Study vs. Where We Go</h2>
           </div>
         </div>
       </div>
@@ -171,51 +175,35 @@
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p>
-              <business>Business and management</business>,
-              <society-and-culture>society and culture</society-and-culture> and
-              <health>health</health> have drawn the most students since 2015.
-              Their appeal is breadth: each leads to a wide range of careers, so
-              Enrollments alone don't show where graduates end up.
-              <br />
-              <br />
-              The growth is elsewhere.
+              Enrolments don't dictate outcomes. While
+              <business>business and management</business> and
+              <society-and-culture>society and culture</society-and-culture>
+              remain the largest cohorts, the real growth story has been in
               <information-technology
-                >Information technology</information-technology
-              >
-              went from the smallest field in 2015 to the fourth largest in
-              2024, including a +37.7% jump in 2023.
-              <br />
-              <br />
-              Outside events matter too. Between 2019 and 2021,
-              <business>business and management</business> commencements fell
-              23% while <health>health</health> grew 9%. Do these shifts lead to
-              better outcomes? Follow the graduates to find out.
+                >information technology</information-technology
+              >, which surged 37.7% in 2023 following the pandemic tech boom.
+              <br /><br />
+              Yet, graduating in a booming field does not guarantee an easy
+              start.
             </p>
           </div>
         </div>
-
         <div class="pure-u-1-2">
           <div
             id="vis1"
             class="vis-container"
+            data-field-filter-chart
             data-vega-spec="./charts/1_line_chart/student_counts_line_chart.vg.json"
           ></div>
         </div>
       </div>
 
       <div class="pure-g">
-        <div class="pure-u-1-2">
-          <div class="description description-left">
-            <h2>What Happens After Graduation?</h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="pure-g">
-        <div class="pure-u-1-1">
+        <div class="pure-u-1-1 centre">
           <div
             id="vis2"
             class="vis-container"
+            data-field-filter-chart
             data-vega-spec="./charts/2_sankey_chart/outcome_after_grad.vg.json"
           ></div>
         </div>
@@ -224,150 +212,75 @@
       <div class="pure-g">
         <div class="pure-u-1-1 centre">
           <p>
-            Where graduates end up depends heavily on their field. In 2025,
-            <education>education</education> graduates were the most likely to
-            move straight into professional full-time work
-            (<education>72.4%</education>), at a time of a
-            <bold>national shortage</bold> of teachers.
-            <br />
-            <br />
-            <science>Natural and physical sciences</science> graduates took a
-            different route. At 35.9%, they had the highest share going on to
-            further study, meaning fewer entered the workforce directly.
-            <br />
-            <br />
-            For some graduates, neither path opened up as easily.
-            <creative-arts>Creative arts</creative-arts>
-            (<creative-arts>29.4%</creative-arts>) and
-            <information-technology
-              >information technology</information-technology
-            >
-            (<information-technology>22.7%</information-technology>) had the
-            largest shares outside both full-time work and further study,
-            pointing to a harder entry into those industries.
+            When those large cohorts enter the workforce, many hit a wall. Both
+            <information-technology>IT</information-technology> and
+            <creative-arts>creative arts</creative-arts> see significant shares
+            of graduates failing to secure full-time work or transition into
+            further study right out of the gate. Conversely,
+            <education>education</education> graduates are absorbed immediately
+            into the workforce, plugging national shortages.
           </p>
         </div>
       </div>
 
+      <!-- Section 2: Time Heals & Salary -->
       <div class="pure-g">
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p>
-              It does get easier. Three years after graduating, every field has
-              a higher share of the 2022 cohort in professional full-time work.
-              The biggest gains went to the fields that started weakest:
-              <creative-arts>creative arts</creative-arts> climbed from 36.1% to
-              70.9%, and <science>natural and physical sciences</science> and
-              <society-and-culture>society and culture</society-and-culture>
-              each gained about 30%.
-              <br />
-              <br />
-              <information-technology
-                >Information technology</information-technology
-              >
-              shows the sharpest turnaround. After a difficult start for many
-              graduates, it reached 90.5%, ahead of
-              <engineering>engineering</engineering> and second only to
-              <education>education</education>. Education started highest and
-              gained least, so the gap between fields has narrowed from about
-              44% in 2022 to 22% in 2025.
+              However, short-term struggles are rarely permanent. After three
+              years, the landscape shifts dramatically.
+              <br /><br />
+              <information-technology>IT</information-technology> graduates
+              recover to achieve a 90.5% full-time employment rate, leaping
+              ahead of <engineering>engineering</engineering>. Even
+              <creative-arts>creative arts</creative-arts>
+              nearly doubles its employment rate, proving that a slow start is
+              not the end of a career trajectory.
             </p>
           </div>
         </div>
         <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis3"
             class="vis-container"
+            data-field-filter-chart
             data-vega-spec="./charts/3_grouped_bar_chart/grad_three_years_later.vg.json"
           ></div>
         </div>
       </div>
 
       <div class="pure-g">
-        <div class="pure-u-1-1 centre">
-          <p>
-            Slow starts don't have to be the end of the story.
-            <br />
-            But a professional job isn't the same as a well-paid one, so what is
-            each field worth?
-          </p>
-        </div>
-      </div>
-
-      <div class="pure-g">
-        <div class="pure-u-1-2">
+        <div class="pure-u-1-1">
           <div class="description description-left">
-            <h2>What Is It Worth?</h2>
+            <h2>The Value of a Degree</h2>
           </div>
         </div>
       </div>
 
       <div class="pure-g">
-        <div class="pure-u-1-2">
-          <div class="description description-left">
-            <p>
-              A professional job and a good salary tend to go together, but not
-              always.
-              <education>Education</education> (72.4%) and
-              <engineering>engineering</engineering> (70.6%) lead on
-              professional full-time work, and both pay over $82,000.
-              <health>Health</health> is the exception at the top. It has the
-              highest median salary ($85,375) but only 56.3% in professional
-              full-time roles.
-              <br />
-              <br />
-              <creative-arts>Creative arts</creative-arts> sits at the bottom on
-              both measures, with 27.0% and $63,200, about $22,000 less than
-              health.
-              <br />
-              <br />
-              Size doesn't guarantee pay either:
-              <business>business and management</business> and
-              <society-and-culture>society and culture</society-and-culture>,
-              the two biggest fields by enrolment, both earn under $76,000.
-              <br />
-              <br />
-              But a salary at one point in time is only part of the picture. How
-              quickly does pay grow?
-            </p>
-          </div>
-        </div>
         <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis4"
             class="vis-container"
+            data-field-filter-chart
             data-vega-spec="./charts/4_bubble_chart/median_salary_vs_employability.vg.json"
-          ></div>
-        </div>
-      </div>
-
-      <div class="pure-g">
-        <div class="pure-u-1-2">
-          <div
-            id="vis1"
-            class="vis-container"
-            data-vega-spec="./charts/5_connected_dot_chart/median_salary_three_years_later.vg.json"
           ></div>
         </div>
         <div class="pure-u-1-2">
           <div class="description description-right">
             <p>
-              Within three years, the median salary of the 2022 graduates rose
-              in every field, by at least $17,800.
-              <engineering>Engineering</engineering> gained the most (+$32,000,
-              to $103,000), followed by
-              <information-technology
-                >information technology</information-technology
-              >
-              (+$30,900) and
-              <business>business and management</business> (+$30,000), which
-              climbed from seventh to fourth place.
-              <br />
-              <br />
-              <education>Education</education> went the other way. It started
-              with the second-highest salary ($72,300) but grew the least in
-              percentage terms (+28.1%), and finished fifth.
-              <health>Health</health> kept its lead at $105,250.
+              A high employment rate does not automatically equate to a high
+              salary. While <education>education</education> offers supreme job
+              security, its starting salary is eclipsed by
+              <health>health</health>, which boasts the highest median starting
+              pay ($85,375) despite lower initial full-time employment figures
+              due to internship years. <br /><br />
+              Meanwhile, the massive graduating cohorts of
+              <business>business</business> and
+              <society-and-culture>society and culture</society-and-culture>
+              face intense market saturation, keeping their median starting
+              salaries suppressed below $76,000.
             </p>
           </div>
         </div>
@@ -377,36 +290,55 @@
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p>
-              Within fields, the pay gap by gender is small but mostly points
-              one way: men's median salary is higher in seven of the eight
-              fields.
-              <science>Natural and physical sciences</science> has the largest
-              gap ($5,200), followed by
-              <society-and-culture>society and culture</society-and-culture>
-              ($3,300) and <education>education</education> ($3,100).
-              <information-technology
-                >Information technology</information-technology
-              >
-              is the closest to parity, at $800.
-              <br />
-              <br />
-              <creative-arts>Creative arts</creative-arts> is the one reversal,
-              with women earning $1,700 more than men, though from the lowest
-              salaries of any field.
+              But a salary at one point in time is only part of the picture.
+              Over three years, financial gaps widen.
+              <engineering>Engineering</engineering> and
+              <information-technology>IT</information-technology> salaries
+              explode by over $30,000, while
+              <education>education</education> stagnates, dropping from second
+              to fifth place in overall pay.
             </p>
           </div>
         </div>
         <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis5"
             class="vis-container"
-            data-vega-spec="./charts/6_diverging_lollypop_chart/median_salary_vs_gender.vg.json"
+            data-field-filter-chart
+            data-vega-spec="./charts/5_connected_dot_chart/median_salary_three_years_later.vg.json"
           ></div>
         </div>
       </div>
 
       <div class="pure-g">
         <div class="pure-u-1-2">
+          <div
+            id="vis6"
+            class="vis-container"
+            data-field-filter-chart
+            data-vega-spec="./charts/6_diverging_lollypop_chart/median_salary_vs_gender.vg.json"
+          ></div>
+        </div>
+        <div class="pure-u-1-2">
+          <div class="description description-right">
+            <p>
+              Furthermore, within these fields, traditional gender disparities
+              emerge. The pay gap points one way: men's median salary is higher
+              in seven out of the eight fields.
+              <science>Natural and physical sciences</science> has the largest
+              gap at $5,200. <br /><br />
+              The only reversal is <creative-arts>creative arts</creative-arts>,
+              where women earn slightly more, though within the lowest-paid
+              industry overall.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: How Has It Changed? -->
+      <br />
+      <div class="pure-g">
+        <div class="pure-u-1-1">
           <div class="description description-left">
             <h2>How Has It Changed?</h2>
           </div>
@@ -417,28 +349,24 @@
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p>
-              Pay rankings have barely changed. <health>Health</health> has had
-              the highest median graduate salary every year since 2015, and
-              <creative-arts>creative arts</creative-arts> has had the lowest,
-              with no exceptions in ten years.
-              <br />
-              <br />
-              The movement is in the middle.
-              <engineering>Engineering</engineering> overtook
-              <education>education</education> for second place in 2023, as it
-              had briefly in 2017.
-              <science>Natural and physical sciences</science> moved the most.
-              It reached fourth in 2018 but had fallen to seventh by 2023,
-              behind
-              <society-and-culture>society and culture</society-and-culture>
-              since 2022.
+              Over the last decade, the extremes have remained fixed:
+              <health>health</health> has held the highest median graduate
+              salary every year since 2015, and
+              <creative-arts>creative arts</creative-arts> has reliably held the
+              lowest. <br /><br />
+              The middle of the pack, however, is highly volatile.
+              <engineering>Engineering</engineering> recently overtook
+              <education>education</education> for second place, while
+              <science>science</science> plummeted from fourth in 2018 to
+              seventh by 2023.
             </p>
           </div>
         </div>
         <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis7"
             class="vis-container"
+            data-field-filter-chart
             data-vega-spec="./charts/7_bump_chart/median_salary_ranked.vg.json"
           ></div>
         </div>
@@ -446,38 +374,36 @@
 
       <div class="pure-g">
         <div class="pure-u-1-2">
-          <div class="description description-left">
-            <p>
-              Finding full-time work got harder for most fields between 2022 and
-              2025. The share of graduates not in full-time work rose in seven
-              of the eight fields, with
-              <information-technology
-                >information technology</information-technology
-              >
-              experiencing the biggest jump, up 11.3 points to 34.7%.
-              <br />
-              <br />
-              <education>Education</education> (+0.5 points) and
-              <health>health</health> (+1.0) barely moved.
-              <science>Natural and physical sciences</science> was the only
-              field to improve (-1.3 points), but its 37.6% is mostly graduates
-              in further study (35.9%), not graduates looking for work.
-            </p>
-          </div>
-        </div>
-        <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis8"
             class="vis-container"
+            data-field-filter-chart
             data-vega-spec="./charts/8_slope_chart/unemployment_2022_vs_2025.vg.json"
           ></div>
         </div>
+        <div class="pure-u-1-2">
+          <div class="description description-right">
+            <p>
+              Beyond salary rankings, the broader job market itself is shifting.
+              Finding full-time work became noticeably harder for most fields
+              between 2022 and 2025.
+              <br /><br />
+              The share of graduates failing to secure full-time work rose in
+              seven out of eight fields, with
+              <information-technology>IT</information-technology> facing the
+              steepest climb, jumping 11.3 percentage points as tech hiring
+              cooled post-pandemic.
+            </p>
+          </div>
+        </div>
       </div>
 
+      <!-- Section 4: Geography & Migration -->
+      <br />
       <div class="pure-g">
-        <div class="pure-u-1-2">
+        <div class="pure-u-1-1">
           <div class="description description-left">
-            <h2>Does Where You Study Matter?</h2>
+            <h2>The Geography of Opportunity</h2>
           </div>
         </div>
       </div>
@@ -486,26 +412,19 @@
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p>
-              Graduates are not spread evenly across the country. Relative to population,
-              the <bold>ACT</bold> has by far the most, with 2,645 graduates per 100,000
-              residents. That is about 75% above the national rate of 1,510 and more than
-              double Queensland's 1,038, the lowest in the country.
-              <br>
-              <br>
-              Among the states, Victoria (1,779) and Tasmania (1,720) lead, followed by
-              South Australia and New South Wales at around 1,600. Queensland, Western
-              Australia and the Northern Territory all fall below 1,250.
-              <br>
-              <br>
-              Is that because some states attract graduates from elsewhere, or because they
-              educate more of their own residents? The next map follows where students come
-              from.
+              Opportunities aren't just bound by what you study, but where you
+              study. Relative to population, the
+              <bold>ACT</bold> is a massive outlier, producing 2,645 graduates
+              per 100,000 residents, more than double the rate of Queensland.
+              <br /><br />
+              This density isn't purely organic; it's heavily influenced by
+              domestic student migration.
             </p>
           </div>
         </div>
         <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis9"
             class="vis-container"
             data-vega-spec="./charts/9_choropleth_map/state_graduate_employment_2024.vg.json"
           ></div>
@@ -515,65 +434,183 @@
       <div class="pure-g">
         <div class="pure-u-1-2">
           <div
-            id="vis1"
+            id="vis10"
             class="vis-container"
             data-vega-spec="./charts/10_flow_map/domestic_student_migration_2024.vg.json"
           ></div>
         </div>
         <div class="pure-u-1-2">
+          <div class="description description-left">
+            <p>
+              Mapping the net flow of domestic students reveals a distinct
+              northern migration.
+              <br /><br />
+              Southern Australia and Tasmania see major student relocation, as
+              students head to larger and more prestigious institutions along
+              the eastern coast.
+              <br /><br />
+              Queensland and Victoria are particularly attractive to interstate
+              students. They act as sponges, absorbing students who are chasing
+              lifestyle changes or specific educational offerings that their
+              local institutions can't match.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Prestige & Conclusion -->
+      <br />
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description description-left">
+            <h2>Does Institutional Prestige Pay Off?</h2>
+          </div>
+          <section
+            class="institution-filter"
+            aria-labelledby="institution-filter-title"
+          >
+            <h6 id="institution-filter-title">
+              Click to highlight a university group
+            </h6>
+            <div
+              class="institution-filter-buttons"
+              role="group"
+              aria-label="Filter charts by university group"
+            >
+              <button
+                class="institution-filter-button"
+                type="button"
+                data-institution-group="Yes"
+                aria-pressed="false"
+              >
+                Group of Eight
+              </button>
+              <button
+                class="institution-filter-button"
+                type="button"
+                data-institution-group="No"
+                aria-pressed="false"
+              >
+                Non-Go8 universities
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div
+            id="vis11"
+            class="vis-container"
+            data-institution-group-chart
+            data-vega-spec="./charts/11_proportional_symbol_map/median_salary_by_institution.vg.json"
+          ></div>
+        </div>
+        <div class="pure-u-1-2">
           <div class="description description-right">
             <p>
-              Graduates are not spread evenly across the country. Relative to population,
-              the <bold>ACT</bold> has by far the most, with 2,645 graduates per 100,000
-              residents. That is about 75% above the national rate of 1,510 and more than
-              double Queensland's 1,038, the lowest in the country.
-              <br>
-              <br>
-              Among the states, Victoria (1,779) and Tasmania (1,720) lead, followed by
-              South Australia and New South Wales at around 1,600. Queensland, Western
-              Australia and the Northern Territory all fall below 1,250.
-              <br>
-              <br>
-              Is that because some states attract graduates from elsewhere, or because they
-              educate more of their own residents? The next map follows where students come
-              from.
+              Australian students are often sold on the prestige of the
+              <b>Group of Eight (Go8)</b> universities. However, mapping median
+              salaries across top institutions tells a different story.
+              <br /><br />
+              Curtin University (a non-Go8 institution in Western Australia)
+              boasts a median graduate salary of $80,000, outperforming the
+              prestigious University of Melbourne ($69,200).
+              <br /><br />
+              This reality is echoed in full-time employment rates. The non-Go8
+              institutions consistently match or exceed their older, wealthier
+              counterparts when it comes to placing graduates directly into
+              jobs.
+              <br /><br />
+              This suggests that local industry ties, mandatory placements, and
+              specialised degrees often outweigh historical prestige in the
+              modern job market.
             </p>
           </div>
         </div>
       </div>
 
       <div class="pure-g">
-        <div class="pure-u-1-1 centre">
-          <p>
-            Text goes here
-          </p>
-        </div>
-      </div>
-
-      <div class="pure-g">
-        <div class="pure-u-1-1 centre">
+        <div class="pure-u-1-1">
           <div
-            id="vis1"
+            id="vis12"
             class="vis-container"
-            data-vega-spec="./charts/11_proportional_symbol_map/median_salary_by_institution.vg.json"
-          ></div>
-        </div>
-      </div>
-
-      <div class="pure-g">
-        <div class="pure-u-1-1 centre">
-          <div
-            id="vis1"
-            class="vis-container"
+            data-institution-group-chart
             data-vega-spec="./charts/12_bar_chart/fulltime_employment_by_institution.vg.json"
           ></div>
         </div>
       </div>
 
+      <br />
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div class="description description-left">
+            <h2>Conclusion</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-2 left">
+          <p>
+            The data is clear: your degree heavily influences your early
+            destiny, but not always in the way you might expect.
+            <br />
+            Choosing a "safe" or prestigious path like Business at a Group of
+            Eight university does not guarantee top-tier pay or immediate
+            employment. Instead, outcomes are dictated by industry demand (like
+            Education and Health), long-term career trajectories (like the
+            massive three-year salary spikes in IT and Engineering), and
+            geographic willingness to move.
+          </p>
+        </div>
+      </div>
+
+      <br />
+      <hr />
+      <br />
+
       <div class="pure-g">
         <div class="pure-u-1-1 small-font">
+          <h3>Sources</h3>
           <p>
-            This visualisation is created by
+            Australian Government Department of Education. (2024).
+            <i>Perturbed student enrolments pivot table 2024</i>. Retrieved
+            10/10/26, from
+            <a
+              href="https://www.education.gov.au/higher-education-statistics/resources/perturbed-student-enrolments-pivot-table-2024"
+              target="_blank"
+              >https://www.education.gov.au/higher-education-statistics/resources/perturbed-student-enrolments-pivot-table-2024</a
+            >
+          </p>
+          <p>
+            Australian Government Department of Education. (2024).
+            <i>2024 Section 1 - Commencing students</i>. Retrieved 10/10/26,
+            from
+            <a
+              href="https://www.education.gov.au/higher-education-statistics/resources/2024-section-1-commencing-students"
+              target="_blank"
+              >https://www.education.gov.au/higher-education-statistics/resources/2024-section-1-commencing-students</a
+            >
+          </p>
+          <p>
+            Quality Indicators for Learning and Teaching (QILT). (2025).
+            <i>2025 GOS national report</i>. Retrieved 11/10/26, from
+            <a
+              href="https://qilt.edu.au/docs/default-source/default-document-library/2025-gos-national-report.pdf?sfvrsn=39173559_1"
+              target="_blank"
+              >https://qilt.edu.au/docs/default-source/default-document-library/2025-gos-national-report.pdf?sfvrsn=39173559_1</a
+            >
+          </p>
+          <p>
+            Google. (n.d.). <i>Google Fonts icons</i>. Retrieved 11/10/26, from
+            <a href="https://fonts.google.com/icons" target="_blank"
+              >https://fonts.google.com/icons</a
+            >
+          </p>
+          <p>
+            This visualisation was created by
             <a
               href="https://github.com/HarryM0016/FIT3179-DV2.git"
               target="_blank"
@@ -586,8 +623,10 @@
     <!-- end page -->
 
     <script type="text/javascript">
-      const chartViews = [];
+      const fieldFilterViews = [];
+      const institutionGroupViews = [];
       let selectedField = "All";
+      let selectedInstitutionGroup = "All";
 
       const chartConfig = {
         font: "Source Sans 3",
@@ -614,8 +653,14 @@
           config: chartConfig
         })
           .then(({ view }) => {
-            chartViews.push(view);
-            view.signal("fieldFilter", selectedField);
+            if (container.hasAttribute("data-field-filter-chart")) {
+              fieldFilterViews.push(view);
+              view.signal("fieldFilter", selectedField);
+            }
+            if (container.hasAttribute("data-institution-group-chart")) {
+              institutionGroupViews.push(view);
+              view.signal("groupFilter", selectedInstitutionGroup);
+            }
             return view.runAsync();
           })
           .catch(console.error);
@@ -625,7 +670,6 @@
 
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          // Clicking the active button clears the filter
           selectedField =
             selectedField === button.dataset.field
               ? "All"
@@ -641,8 +685,41 @@
             .classList.toggle("has-selection", selectedField !== "All");
 
           Promise.all(
-            chartViews.map((view) =>
+            fieldFilterViews.map((view) =>
               view.signal("fieldFilter", selectedField).runAsync()
+            )
+          ).catch(console.error);
+        });
+      });
+
+      const institutionFilterButtons = document.querySelectorAll(
+        ".institution-filter-button"
+      );
+
+      institutionFilterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedInstitutionGroup =
+            selectedInstitutionGroup === button.dataset.institutionGroup
+              ? "All"
+              : button.dataset.institutionGroup;
+
+          institutionFilterButtons.forEach((filterButton) => {
+            const isActive =
+              filterButton.dataset.institutionGroup ===
+              selectedInstitutionGroup;
+            filterButton.classList.toggle("is-active", isActive);
+            filterButton.setAttribute("aria-pressed", isActive);
+          });
+          document
+            .querySelector(".institution-filter-buttons")
+            .classList.toggle(
+              "has-selection",
+              selectedInstitutionGroup !== "All"
+            );
+
+          Promise.all(
+            institutionGroupViews.map((view) =>
+              view.signal("groupFilter", selectedInstitutionGroup).runAsync()
             )
           ).catch(console.error);
         });

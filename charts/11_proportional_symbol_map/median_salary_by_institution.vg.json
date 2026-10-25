@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 790,
+  "width": 390,
   "height": 371,
   "title": {
     "text": "Median Graduate Salary by Institution, 2025",
@@ -12,12 +12,7 @@
   "params": [
     {
       "name": "groupFilter",
-      "value": "All universities",
-      "bind": {
-        "input": "select",
-        "options": ["All universities", "Go8 only", "Non-Go8 only"],
-        "name": "Show: "
-      }
+      "value": "All"
     }
   ],
   "layer": [
@@ -41,9 +36,6 @@
         "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/11_proportional_symbol_map/median_salary_by_institution.csv"
       },
       "transform": [
-        {
-          "filter": "groupFilter === 'All universities' || (groupFilter === 'Go8 only' && datum.GO8 === 'Yes') || (groupFilter === 'Non-Go8 only' && datum.GO8 === 'No')"
-        },
         {
           "calculate": "datum.GO8 === 'Yes' ? 'Group of Eight' : 'Other university'",
           "as": "Group"
@@ -131,7 +123,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Yes", "No"],
-            "range": ["#1F4E8C", "#E07A1F"]
+            "range": ["#2F4A6B", "#8095AE"]
           },
           "legend": {
             "title": "University group",
@@ -141,6 +133,13 @@
             "labelExpr": "datum.label === 'Yes' ? 'Group of Eight' : 'Other universities'",
             "symbolOpacity": 0.9
           }
+        },
+        "opacity": {
+          "condition": {
+            "test": "groupFilter === 'All' || datum.GO8 === groupFilter",
+            "value": 0.85
+          },
+          "value": 0.15
         },
         "order": {
           "field": "Median Salary",

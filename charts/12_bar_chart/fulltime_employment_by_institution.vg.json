@@ -6,8 +6,14 @@
     ],
     "anchor": "start"
   },
-  "width": 637,
+  "width": 715,
   "height": 259,
+  "params": [
+    {
+      "name": "groupFilter",
+      "value": "All"
+    }
+  ],
   "data": {
     "url": "https://raw.githubusercontent.com/HarryM0016/FIT3179-DV2/refs/heads/main/charts/12_bar_chart/University_fulltime_employment_2025.csv"
   },
@@ -40,20 +46,21 @@
         "domain": [0, 100]
       }
     },
+    "opacity": {
+      "condition": {
+        "test": "groupFilter === 'All' || datum.GO8 === groupFilter",
+        "value": 1
+      },
+      "value": 0.15
+    },
     "color": {
       "field": "GO8",
       "type": "nominal",
       "scale": {
         "domain": ["Yes", "No"],
-        "range": ["#1F4E8C", "#E07A1F"]
+        "range": ["#2F4A6B", "#8095AE"]
       },
-      "legend": {
-        "title": "University group",
-        "titleFontSize": 12,
-        "labelFontSize": 12,
-        "labelExpr": "datum.label === 'Yes' ? 'Group of Eight' : 'Other universities'",
-        "symbolOpacity": 0.9
-      }
+      "legend": null
     },
     "tooltip": [
       {

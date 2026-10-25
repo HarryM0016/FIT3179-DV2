@@ -9,7 +9,7 @@
   --health: #c23b22;
   --society-and-culture: #cc79a7;
   --information-technology: #56b4e9;
-  --education: #009e73;
+  --education: #ff630f;
   --creative-arts: #7e57c2;
   --science: #8d6e4b;
 }
@@ -183,6 +183,59 @@ p bold {
 }
 
 .field-filter-buttons.has-selection .field-filter-button:not(.is-active) {
+  opacity: 0.4;
+}
+
+.institution-filter {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.institution-filter h6 {
+  font-size: 12px;
+  font-weight: 700;
+  font-style: italic;
+  margin: 0 0 8px;
+}
+
+.institution-filter-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.institution-filter-button {
+  background: var(--panel-bg);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  min-width: 0;
+  padding: 10px 6px;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    opacity 150ms ease;
+}
+
+.institution-filter-button:hover {
+  border-color: #9a9a9a;
+}
+
+.institution-filter-button:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
+}
+
+.institution-filter-button.is-active {
+  font-weight: 700;
+}
+
+.institution-filter-buttons.has-selection
+  .institution-filter-button:not(.is-active) {
   opacity: 0.4;
 }
 
